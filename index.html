@@ -1,0 +1,747 @@
+<style>
+
+/* ── Reset ciblé pour éviter les conflits avec Carrd ── */
+#rgc-wrap * { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Variables ── */
+#rgc-wrap {
+  --bronze:       #B8914A;
+  --bronze-light: #D4AB6A;
+  --black:        #0D0D0D;
+  --cream:        #FAFAF8;
+  --white:        #FFFFFF;
+  --card-border:  #E4E4E0;
+  --gray-mid:     #7A7A7A;
+  --gray-dark:    #555555;
+  --error:        #C0392B;
+  --font-serif:   'Cormorant Garamond', Georgia, serif;
+  --font-sans:    'Inter', system-ui, sans-serif;
+
+  background-color: var(--cream);
+  color: var(--black);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 48px 20px 80px;
+}
+
+/* ── Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap');
+
+/* ── Intro ── */
+#rgc-wrap .rgc-intro {
+  text-align: center;
+  margin-bottom: 48px;
+}
+#rgc-wrap .rgc-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-bottom: 18px;
+}
+#rgc-wrap .rgc-eyebrow::before,
+#rgc-wrap .rgc-eyebrow::after {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--bronze);
+  opacity: 0.5;
+}
+#rgc-wrap .rgc-intro h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(30px, 5vw, 46px);
+  font-weight: 400;
+  line-height: 1.12;
+  color: var(--black);
+  margin-bottom: 14px;
+}
+#rgc-wrap .rgc-intro h2 em {
+  font-style: italic;
+  color: var(--bronze-light);
+}
+#rgc-wrap .rgc-intro p {
+  font-size: 14px;
+  color: var(--gray-mid);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── Cards ── */
+#rgc-wrap .rgc-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 2px;
+  padding: 36px;
+  margin-bottom: 18px;
+}
+#rgc-wrap .rgc-section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-bottom: 28px;
+}
+#rgc-wrap .rgc-section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--card-border);
+}
+#rgc-wrap .rgc-section-label .rgc-num {
+  background: var(--bronze);
+  color: var(--black);
+  font-weight: 600;
+  font-size: 10px;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Grille de champs ── */
+#rgc-wrap .rgc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+#rgc-wrap .rgc-grid-sim {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+@media (max-width: 560px) {
+  #rgc-wrap .rgc-grid,
+  #rgc-wrap .rgc-grid-sim { grid-template-columns: 1fr; }
+  #rgc-wrap .rgc-card { padding: 24px 18px; }
+}
+#rgc-wrap .rgc-field { display: flex; flex-direction: column; gap: 6px; }
+#rgc-wrap .rgc-field.rgc-full { grid-column: 1 / -1; }
+
+#rgc-wrap label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+}
+
+#rgc-wrap input[type="text"],
+#rgc-wrap input[type="email"],
+#rgc-wrap input[type="tel"],
+#rgc-wrap input[type="number"],
+#rgc-wrap select {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 2px;
+  color: var(--black);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  padding: 12px 14px;
+  width: 100%;
+  transition: border-color 0.18s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+#rgc-wrap input:focus,
+#rgc-wrap select:focus {
+  outline: none;
+  border-color: var(--bronze);
+}
+#rgc-wrap input::placeholder { color: #BBBBB5; }
+#rgc-wrap select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B6B' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+#rgc-wrap select option { background: #fff; color: var(--black); }
+
+/* Erreurs champs */
+#rgc-wrap .rgc-field.rgc-err input,
+#rgc-wrap .rgc-field.rgc-err select { border-color: var(--error) !important; }
+#rgc-wrap .rgc-err-msg {
+  font-size: 11px;
+  color: var(--error);
+  display: none;
+}
+#rgc-wrap .rgc-field.rgc-err .rgc-err-msg { display: block; }
+
+/* ── Résultat simulateur ── */
+#rgc-wrap #rgc-result-zone { display: none; }
+#rgc-wrap .rgc-result-box {
+  border: 1px solid var(--bronze);
+  border-radius: 2px;
+  padding: 28px;
+  text-align: center;
+  background: rgba(184, 145, 74, 0.04);
+  margin-bottom: 16px;
+}
+#rgc-wrap .rgc-result-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-bottom: 12px;
+}
+#rgc-wrap .rgc-result-amount {
+  font-family: var(--font-serif);
+  font-size: 54px;
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+#rgc-wrap .rgc-result-amount.rgc-sur-demande {
+  font-size: 28px;
+  color: var(--bronze);
+}
+#rgc-wrap .rgc-result-unit {
+  font-size: 13px;
+  color: var(--gray-mid);
+}
+#rgc-wrap .rgc-mention {
+  font-size: 11px;
+  color: var(--gray-dark);
+  line-height: 1.65;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ── Récapitulatif ── */
+#rgc-wrap .rgc-summary {
+  border: 1px solid var(--card-border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+#rgc-wrap .rgc-sum-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--card-border);
+  gap: 12px;
+}
+#rgc-wrap .rgc-sum-row:last-child { border-bottom: none; }
+#rgc-wrap .rgc-sum-key {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  flex-shrink: 0;
+}
+#rgc-wrap .rgc-sum-val {
+  font-size: 14px;
+  color: var(--black);
+  text-align: right;
+}
+#rgc-wrap .rgc-sum-val.rgc-accent {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: var(--bronze);
+}
+
+/* ── Bouton ── */
+#rgc-wrap .rgc-btn {
+  display: block;
+  width: 100%;
+  background: var(--bronze);
+  color: var(--black);
+  border: none;
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 17px 28px;
+  cursor: pointer;
+  transition: background 0.18s;
+  position: relative;
+}
+#rgc-wrap .rgc-btn:hover:not(:disabled) { background: var(--bronze-light); }
+#rgc-wrap .rgc-btn:disabled { background: #DDDDD8; color: var(--gray-mid); cursor: not-allowed; }
+#rgc-wrap .rgc-btn.rgc-loading { color: transparent !important; }
+#rgc-wrap .rgc-btn.rgc-loading::after {
+  content: '';
+  position: absolute;
+  width: 18px; height: 18px;
+  top: 50%; left: 50%;
+  margin: -9px 0 0 -9px;
+  border: 2px solid var(--black);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: rgc-spin 0.55s linear infinite;
+}
+@keyframes rgc-spin { to { transform: rotate(360deg); } }
+
+/* ── Message statut ── */
+#rgc-wrap #rgc-status {
+  display: none;
+  padding: 13px 16px;
+  border-radius: 2px;
+  font-size: 13px;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+#rgc-wrap #rgc-status.rgc-status-error {
+  background: rgba(192, 57, 43, 0.1);
+  border: 1px solid rgba(192, 57, 43, 0.3);
+  color: #e74c3c;
+}
+
+/* ── Confirmation ── */
+#rgc-wrap #rgc-confirm { display: none; text-align: center; padding: 60px 20px; }
+#rgc-wrap .rgc-check {
+  width: 64px; height: 64px;
+  border: 1px solid var(--bronze);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 28px;
+  color: var(--bronze);
+  font-size: 28px;
+}
+#rgc-wrap #rgc-confirm h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 400;
+  color: var(--black);
+  margin-bottom: 12px;
+}
+#rgc-wrap #rgc-confirm p {
+  font-size: 14px;
+  color: var(--gray-mid);
+  max-width: 400px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+#rgc-wrap .rgc-confirm-box {
+  display: inline-block;
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 2px;
+  text-align: left;
+  min-width: 280px;
+  overflow: hidden;
+}
+#rgc-wrap .rgc-confirm-row {
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--card-border);
+}
+#rgc-wrap .rgc-confirm-row:last-child { border-bottom: none; }
+#rgc-wrap .rgc-cl {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gray-mid); margin-bottom: 2px;
+}
+#rgc-wrap .rgc-cv { font-size: 13px; color: var(--black); }
+
+</style>
+
+<div id="rgc-wrap">
+
+  <!-- INTRO -->
+  <div class="rgc-intro">
+    <p class="rgc-eyebrow">Financement Alternatif — Paris</p>
+    <h2>Simulez le leasing<br><em>de votre client</em></h2>
+    <p>Renseignez le montant et la durée pour obtenir un loyer estimatif, puis transmettez la simulation directement à votre client par email.</p>
+  </div>
+
+  <!-- ════ FORMULAIRE ════ -->
+  <div id="rgc-form">
+
+    <!-- BLOC 1 — SIMULATEUR -->
+    <div class="rgc-card">
+      <div class="rgc-section-label"><span class="rgc-num">1</span> Simulation leasing</div>
+      <div class="rgc-grid-sim">
+
+        <div class="rgc-field" id="rgcf-montant">
+          <label for="rgc-montant">Montant HT du matériel (€)</label>
+          <input type="number" id="rgc-montant" placeholder="Ex : 25000" min="500" step="1" autocomplete="off">
+          <span class="rgc-err-msg">Montant minimum : 500 €</span>
+        </div>
+
+        <div class="rgc-field" id="rgcf-duree">
+          <label for="rgc-duree">Durée du financement</label>
+          <select id="rgc-duree">
+            <option value="">— Choisir une durée —</option>
+            <option value="24">24 mois (2 ans)</option>
+            <option value="30">30 mois</option>
+            <option value="36">36 mois (3 ans)</option>
+            <option value="42">42 mois</option>
+            <option value="48">48 mois (4 ans)</option>
+            <option value="60">60 mois (5 ans)</option>
+            <option value="63">63 mois</option>
+            <option value="66">66 mois</option>
+            <option value="72">72 mois (6 ans)</option>
+            <option value="84">84 mois (7 ans)</option>
+            <option value="96">96 mois (8 ans)</option>
+          </select>
+          <span class="rgc-err-msg">Veuillez sélectionner une durée</span>
+        </div>
+
+      </div>
+
+      <!-- RÉSULTAT -->
+      <div id="rgc-result-zone">
+        <div class="rgc-result-box">
+          <div class="rgc-result-label">Loyer estimatif HT / mois</div>
+          <div class="rgc-result-amount" id="rgc-amount">—</div>
+          <div class="rgc-result-unit" id="rgc-unit">€ HT / mois</div>
+        </div>
+        <p class="rgc-mention">
+          Simulation indicative, non contractuelle, sous réserve d'analyse complète du dossier,<br>
+          validation financeur et réception des pièces justificatives.
+        </p>
+      </div>
+    </div>
+
+    <!-- BLOC 2 — FOURNISSEUR -->
+    <div class="rgc-card">
+      <div class="rgc-section-label"><span class="rgc-num">2</span> Vos informations — Fournisseur</div>
+      <div class="rgc-grid">
+        <div class="rgc-field" id="rgcf-fnom">
+          <label for="rgc-fnom">Nom complet *</label>
+          <input type="text" id="rgc-fnom" placeholder="Jean Dupont" autocomplete="name">
+          <span class="rgc-err-msg">Champ obligatoire</span>
+        </div>
+        <div class="rgc-field" id="rgcf-fsociete">
+          <label for="rgc-fsociete">Société *</label>
+          <input type="text" id="rgc-fsociete" placeholder="Dupont Équipements Pro" autocomplete="organization">
+          <span class="rgc-err-msg">Champ obligatoire</span>
+        </div>
+        <div class="rgc-field" id="rgcf-femail">
+          <label for="rgc-femail">Email professionnel *</label>
+          <input type="email" id="rgc-femail" placeholder="jean@societe.fr" autocomplete="email">
+          <span class="rgc-err-msg">Email invalide</span>
+        </div>
+        <div class="rgc-field">
+          <label for="rgc-ftel">Téléphone (optionnel)</label>
+          <input type="tel" id="rgc-ftel" placeholder="06 12 34 56 78" autocomplete="tel">
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOC 3 — CLIENT -->
+    <div class="rgc-card">
+      <div class="rgc-section-label"><span class="rgc-num">3</span> Informations client</div>
+      <div class="rgc-grid">
+        <div class="rgc-field" id="rgcf-cnom">
+          <label for="rgc-cnom">Prénom et nom du contact *</label>
+          <input type="text" id="rgc-cnom" placeholder="Marie Martin" autocomplete="off">
+          <span class="rgc-err-msg">Champ obligatoire</span>
+        </div>
+        <div class="rgc-field" id="rgcf-csociete">
+          <label for="rgc-csociete">Société cliente *</label>
+          <input type="text" id="rgc-csociete" placeholder="Restaurant Le Soleil" autocomplete="off">
+          <span class="rgc-err-msg">Champ obligatoire</span>
+        </div>
+        <div class="rgc-field" id="rgcf-csiren">
+          <label for="rgc-csiren">SIREN client *</label>
+          <input type="text" id="rgc-csiren" placeholder="123 456 789" maxlength="11" autocomplete="off">
+          <span class="rgc-err-msg">SIREN invalide (9 chiffres requis)</span>
+        </div>
+        <div class="rgc-field" id="rgcf-cemail">
+          <label for="rgc-cemail">Email client *</label>
+          <input type="email" id="rgc-cemail" placeholder="contact@societe.fr" autocomplete="off">
+          <span class="rgc-err-msg">Email invalide</span>
+        </div>
+        <div class="rgc-field">
+          <label for="rgc-ctel">Téléphone client (optionnel)</label>
+          <input type="tel" id="rgc-ctel" placeholder="06 XX XX XX XX" autocomplete="off">
+        </div>
+        <div class="rgc-field rgc-full">
+          <label for="rgc-cmat">Description du matériel (optionnel)</label>
+          <input type="text" id="rgc-cmat" placeholder="Ex : Équipement cuisine professionnelle, matériel audiovisuel…" autocomplete="off">
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOC 4 — RÉCAP + ENVOI -->
+    <div class="rgc-card" id="rgc-recap" style="display:none;">
+      <div class="rgc-section-label"><span class="rgc-num">4</span> Récapitulatif &amp; envoi</div>
+
+      <div class="rgc-summary">
+        <div class="rgc-sum-row"><span class="rgc-sum-key">Montant HT</span><span class="rgc-sum-val" id="rsum-montant">—</span></div>
+        <div class="rgc-sum-row"><span class="rgc-sum-key">Durée</span><span class="rgc-sum-val" id="rsum-duree">—</span></div>
+        <div class="rgc-sum-row"><span class="rgc-sum-key">Fournisseur</span><span class="rgc-sum-val" id="rsum-fourn">—</span></div>
+        <div class="rgc-sum-row"><span class="rgc-sum-key">Client</span><span class="rgc-sum-val" id="rsum-client">—</span></div>
+        <div class="rgc-sum-row"><span class="rgc-sum-key">SIREN</span><span class="rgc-sum-val" id="rsum-siren">—</span></div>
+        <div class="rgc-sum-row"><span class="rgc-sum-key">Loyer estimatif HT/mois</span><span class="rgc-sum-val rgc-accent" id="rsum-loyer">—</span></div>
+      </div>
+
+      <p class="rgc-mention" style="margin-bottom:20px; text-align:left;">
+        Simulation indicative, non contractuelle, sous réserve d'analyse complète du dossier, validation financeur et réception des pièces justificatives.
+      </p>
+
+      <div id="rgc-status"></div>
+
+      <button class="rgc-btn" id="rgc-btn" type="button">
+        Envoyer la simulation au client
+      </button>
+    </div>
+
+  </div><!-- /rgc-form -->
+
+  <!-- ════ CONFIRMATION ════ -->
+  <div id="rgc-confirm">
+    <div class="rgc-check">✓</div>
+    <h3>Simulation envoyée</h3>
+    <p>La simulation a bien été transmise au client par email. Une copie a été adressée à RG Capital et à votre adresse.</p>
+    <div class="rgc-confirm-box">
+      <div class="rgc-confirm-row"><div class="rgc-cl">Client</div><div class="rgc-cv" id="rconf-client">—</div></div>
+      <div class="rgc-confirm-row"><div class="rgc-cl">SIREN</div><div class="rgc-cv" id="rconf-siren">—</div></div>
+      <div class="rgc-confirm-row"><div class="rgc-cl">Loyer estimatif HT/mois</div><div class="rgc-cv" id="rconf-loyer">—</div></div>
+      <div class="rgc-confirm-row"><div class="rgc-cl">Durée</div><div class="rgc-cv" id="rconf-duree">—</div></div>
+    </div>
+  </div>
+
+</div><!-- /rgc-wrap -->
+
+<script>
+(function waitForDom() {
+  if (!document.getElementById('rgc-montant')) {
+    setTimeout(waitForDom, 50);
+    return;
+  }
+
+
+// ╔══════════════════════════════════════════╗
+// ║  ⚙️  CONFIGURATION — À MODIFIER          ║
+// ╚══════════════════════════════════════════╝
+var WEBHOOK_URL = 'https://hook.eu1.make.com/m2o8jucm5hih1ooomelqka5ee1we2gsk';
+
+
+// ══════════════════════════════════════════════
+// BARÈME COMPLET RG CAPITAL — ne pas modifier
+// ══════════════════════════════════════════════
+var BAREME = [
+  { min: 500,    max: 2500,    taux: { '24':9.44,'30':8.22,'36':7.86,'42':7.59,'48':7.38,'60':7.06,'63':6.78,'66':6.78,'72':6.78,'84':6.78,'96':null } },
+  { min: 2501,   max: 5000,    taux: { '24':9.20,'30':7.98,'36':7.63,'42':7.37,'48':7.16,'60':6.85,'63':6.57,'66':6.57,'72':6.57,'84':6.57,'96':null } },
+  { min: 5001,   max: 12500,   taux: { '24':8.73,'30':7.75,'36':7.40,'42':6.92,'48':6.72,'60':6.20,'63':6.14,'66':6.14,'72':6.14,'84':6.14,'96':null } },
+  { min: 12501,  max: 25000,   taux: { '24':8.50,'30':7.52,'36':7.18,'42':6.70,'48':6.50,'60':5.99,'63':5.93,'66':5.93,'72':5.93,'84':5.93,'96':null } },
+  { min: 25001,  max: 37501,   taux: { '24':8.26,'30':7.29,'36':6.95,'42':6.47,'48':6.28,'60':5.77,'63':5.71,'66':5.71,'72':5.71,'84':5.71,'96':null } },
+  { min: 37501,  max: 50000,   taux: { '24':8.03,'30':7.06,'36':6.72,'42':6.25,'48':5.83,'60':5.55,'63':5.49,'66':5.49,'72':5.49,'84':5.49,'96':null } },
+  { min: 50001,  max: 150000,  taux: { '24':7.55,'30':6.60,'36':6.27,'42':5.80,'48':5.39,'60':5.11,'63':5.06,'66':5.06,'72':5.06,'84':5.06,'96':null } },
+  { min: 150001, max: Infinity, taux: { '24':7.25,'30':6.30,'36':5.97,'42':5.50,'48':5.09,'60':4.81,'63':4.76,'66':4.76,'72':4.76,'84':4.76,'96':null } }
+];
+
+// ══════════════════════════════════════════════
+// FORMULE — ne pas modifier
+// M = K × (r/12) / (1 − (1 + r/12)^−n)
+// ══════════════════════════════════════════════
+function getTranche(montant) {
+  for (var i = 0; i < BAREME.length; i++) {
+    if (montant >= BAREME[i].min && montant <= BAREME[i].max) return BAREME[i];
+  }
+  return null;
+}
+function calculerLoyer(montant, tauxAnnuel, nMois) {
+  var r = tauxAnnuel / 100 / 12;
+  if (r === 0) return montant / nMois;
+  return montant * r / (1 - Math.pow(1 + r, -nMois));
+}
+
+// ══════════════════════════════════════════════
+// ÉTAT
+// ══════════════════════════════════════════════
+var state = { loyer: null, surDemande: false };
+
+// ══════════════════════════════════════════════
+// CALCUL EN TEMPS RÉEL
+// ══════════════════════════════════════════════
+function calculer() {
+  var montant = parseFloat(document.getElementById('rgc-montant').value);
+  var duree   = document.getElementById('rgc-duree').value;
+  var zone    = document.getElementById('rgc-result-zone');
+  var amtEl   = document.getElementById('rgc-amount');
+  var unitEl  = document.getElementById('rgc-unit');
+
+  state.loyer = null; state.surDemande = false;
+
+  if (!montant || montant < 500 || !duree) { zone.style.display = 'none'; refreshRecap(); return; }
+  var tranche = getTranche(montant);
+  if (!tranche) { zone.style.display = 'none'; refreshRecap(); return; }
+
+  var taux = tranche.taux[duree];
+  zone.style.display = 'block';
+
+  if (taux === null) {
+    state.surDemande = true;
+    amtEl.className  = 'rgc-result-amount rgc-sur-demande';
+    amtEl.textContent = 'Sur demande';
+    unitEl.textContent = 'Contactez RG Capital pour cette durée';
+  } else {
+    var loyer = calculerLoyer(montant, taux, parseInt(duree, 10));
+    state.loyer = loyer;
+    amtEl.className  = 'rgc-result-amount';
+    amtEl.textContent = loyer.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    unitEl.textContent = '€ HT / mois';
+  }
+  refreshRecap();
+}
+
+// ══════════════════════════════════════════════
+// RÉCAPITULATIF
+// ══════════════════════════════════════════════
+function gv(id) { return document.getElementById(id).value.trim(); }
+
+function refreshRecap() {
+  var montant  = parseFloat(document.getElementById('rgc-montant').value);
+  var duree    = document.getElementById('rgc-duree').value;
+  var fNom     = gv('rgc-fnom');
+  var fEmail   = gv('rgc-femail');
+  var cNom     = gv('rgc-cnom');
+  var cEmail   = gv('rgc-cemail');
+  var recap    = document.getElementById('rgc-recap');
+
+  if (!montant || montant < 500 || !duree || !fNom || !fEmail || !cNom || !cEmail) {
+    recap.style.display = 'none'; return;
+  }
+  recap.style.display = 'block';
+
+  document.getElementById('rsum-montant').textContent = montant.toLocaleString('fr-FR') + ' € HT';
+  document.getElementById('rsum-duree').textContent   = duree + ' mois';
+  document.getElementById('rsum-fourn').textContent   = fNom + (gv('rgc-fsociete') ? ' — ' + gv('rgc-fsociete') : '');
+  document.getElementById('rsum-client').textContent  = cNom + ' (' + cEmail + ')';
+  document.getElementById('rsum-siren').textContent   = gv('rgc-csiren') || '—';
+  document.getElementById('rsum-loyer').textContent   = state.surDemande ? 'Sur demande' :
+    (state.loyer ? state.loyer.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' € HT/mois' : '—');
+}
+
+// Listeners
+document.getElementById('rgc-montant').addEventListener('input', calculer);
+document.getElementById('rgc-duree').addEventListener('change', calculer);
+['rgc-fnom','rgc-fsociete','rgc-femail','rgc-ftel',
+ 'rgc-cnom','rgc-csociete','rgc-csiren','rgc-cemail','rgc-ctel','rgc-cmat'
+].forEach(function(id) {
+  document.getElementById(id).addEventListener('input', refreshRecap);
+});
+
+// ══════════════════════════════════════════════
+// VALIDATION
+// ══════════════════════════════════════════════
+function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+function isSiren(v) { return /^\d{9}$/.test(v.replace(/\s/g, '')); }
+
+function setErr(id, hasErr) {
+  var el = document.getElementById(id);
+  if (hasErr) el.classList.add('rgc-err'); else el.classList.remove('rgc-err');
+  return hasErr;
+}
+
+function valider() {
+  var montant  = parseFloat(document.getElementById('rgc-montant').value);
+  var duree    = document.getElementById('rgc-duree').value;
+  var ok = true;
+
+  if (setErr('rgcf-montant',  !montant || montant < 500))              ok = false;
+  if (setErr('rgcf-duree',    !duree))                                 ok = false;
+  if (setErr('rgcf-fnom',     !gv('rgc-fnom')))                        ok = false;
+  if (setErr('rgcf-fsociete', !gv('rgc-fsociete')))                    ok = false;
+  if (setErr('rgcf-femail',   !isEmail(gv('rgc-femail'))))             ok = false;
+  if (setErr('rgcf-cnom',     !gv('rgc-cnom')))                        ok = false;
+  if (setErr('rgcf-csociete', !gv('rgc-csociete')))                    ok = false;
+  if (setErr('rgcf-csiren',   !isSiren(gv('rgc-csiren'))))             ok = false;
+  if (setErr('rgcf-cemail',   !isEmail(gv('rgc-cemail'))))             ok = false;
+
+  return ok;
+}
+
+// ══════════════════════════════════════════════
+// ENVOI VERS MAKE
+// ══════════════════════════════════════════════
+document.getElementById('rgc-btn').addEventListener('click', function() {
+  if (!valider()) {
+    var first = document.querySelector('#rgc-wrap .rgc-err input, #rgc-wrap .rgc-err select');
+    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  var btn    = document.getElementById('rgc-btn');
+  var status = document.getElementById('rgc-status');
+
+  btn.classList.add('rgc-loading'); btn.disabled = true;
+  status.style.display = 'none'; status.className = '';
+
+  var montant   = parseFloat(document.getElementById('rgc-montant').value);
+  var duree     = document.getElementById('rgc-duree').value;
+  var sirenRaw  = gv('rgc-csiren').replace(/\s/g, '');
+
+  var loyerTexte = state.surDemande ? 'Sur demande' :
+    (state.loyer ? state.loyer.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' € HT/mois' : '—');
+
+  // ── Payload complet envoyé à Make ──
+  var payload = {
+    simulation: {
+      montant_ht:      montant,
+      duree_mois:      parseInt(duree, 10),
+      loyer_estime_ht: state.surDemande ? null : (state.loyer ? Math.round(state.loyer * 100) / 100 : null),
+      loyer_texte:     loyerTexte,
+      sur_demande:     state.surDemande,
+      date_simulation: new Date().toLocaleDateString('fr-FR'),
+      mention_legale:  'Simulation indicative, non contractuelle, sous réserve d\'analyse complète du dossier, validation financeur et réception des pièces justificatives.'
+    },
+    fournisseur: {
+      nom:       gv('rgc-fnom'),
+      societe:   gv('rgc-fsociete'),
+      email:     gv('rgc-femail'),
+      telephone: gv('rgc-ftel')
+    },
+    client: {
+      nom:                  gv('rgc-cnom'),
+      societe:              gv('rgc-csociete'),
+      siren:                sirenRaw,
+      email:                gv('rgc-cemail'),
+      telephone:            gv('rgc-ctel'),
+      description_materiel: gv('rgc-cmat')
+    }
+  };
+
+  fetch(WEBHOOK_URL, {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify(payload)
+  })
+  .then(function(res) {
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    // Succès
+    document.getElementById('rgc-form').style.display  = 'none';
+    document.getElementById('rconf-client').textContent = gv('rgc-cnom') + ' — ' + gv('rgc-csociete');
+    document.getElementById('rconf-siren').textContent  = sirenRaw;
+    document.getElementById('rconf-loyer').textContent  = loyerTexte;
+    document.getElementById('rconf-duree').textContent  = duree + ' mois';
+    document.getElementById('rgc-confirm').style.display = 'block';
+    document.getElementById('rgc-wrap').scrollIntoView({ behavior: 'smooth' });
+  })
+  .catch(function() {
+    status.textContent = 'Erreur lors de l\'envoi. Veuillez réessayer ou contacter RG Capital directement.';
+    status.className = 'rgc-status-error';
+    status.style.display = 'block';
+    btn.classList.remove('rgc-loading'); btn.disabled = false;
+  });
+});
+
+
+})();
+</script>
