@@ -691,34 +691,28 @@ document.getElementById('rgc-btn').addEventListener('click', function() {
   var loyerTexte = state.surDemande ? 'Sur demande' :
     (state.loyer ? state.loyer.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' € HT/mois' : '—');
 
-  // ── Payload complet envoyé à Make ──
+  // ── Payload PLAT envoyé à Make (structure aplatie pour compatibilité Make.com) ──
   var payload = {
-    simulation: {
-      montant_ht:      montant,
-      duree_mois:      parseInt(duree, 10),
-      loyer_estime_ht: state.surDemande ? null : (state.loyer ? Math.round(state.loyer * 100) / 100 : null),
-      loyer_texte:     loyerTexte,
-      sur_demande:     state.surDemande,
-      date_simulation: new Date().toLocaleDateString('fr-FR'),
-      mention_legale:  'Simulation indicative, non contractuelle, sous réserve d\'analyse complète du dossier, validation financeur et réception des pièces justificatives.'
-    },
-    fournisseur: {
-      nom:       gv('rgc-fnom'),
-      societe:   gv('rgc-fsociete'),
-      email:     gv('rgc-femail'),
-      telephone: gv('rgc-ftel')
-    },
-    client: {
-      nom:                  gv('rgc-cnom'),
-      societe:              gv('rgc-csociete'),
-      siren:                sirenRaw,
-      email:                gv('rgc-cemail'),
-      telephone:            gv('rgc-ctel'),
-      description_materiel: gv('rgc-cmat')
-    }
+    simulation_montant_ht:      montant,
+    simulation_duree_mois:      parseInt(duree, 10),
+    simulation_loyer_estime_ht: state.surDemande ? null : (state.loyer ? Math.round(state.loyer * 100) / 100 : null),
+    simulation_loyer_texte:     loyerTexte,
+    simulation_sur_demande:     state.surDemande,
+    simulation_date:            new Date().toLocaleDateString('fr-FR'),
+    simulation_mention_legale:  'Simulation indicative, non contractuelle, sous réserve d\'analyse complète du dossier, validation financeur et réception des pièces justificatives.',
+    fournisseur_nom:       gv('rgc-fnom'),
+    fournisseur_societe:   gv('rgc-fsociete'),
+    fournisseur_email:     gv('rgc-femail'),
+    fournisseur_telephone: gv('rgc-ftel'),
+    client_nom:                  gv('rgc-cnom'),
+    client_societe:              gv('rgc-csociete'),
+    client_siren:                sirenRaw,
+    client_email:                gv('rgc-cemail'),
+    client_telephone:            gv('rgc-ctel'),
+    client_description_materiel: gv('rgc-cmat')
   };
 
-  fetch(WEBHOOK_URL, {
+    fetch(WEBHOOK_URL, {
     method:  'POST',
     headers: { 'Content-Type': 'application/json' },
     body:    JSON.stringify(payload)
