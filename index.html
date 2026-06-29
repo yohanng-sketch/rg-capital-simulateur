@@ -1,9 +1,17 @@
-<style>
+<!-- ============================================================
+     RG CAPITAL â SIMULATEUR FOURNISSEUR
+     Version : Carrd Embed (sans DOCTYPE / html / head / body)
+     Coller dans un bloc "Code" ou "Embed" Carrd
+     ============================================================ -->
 
-/* ── Reset ciblé pour éviter les conflits avec Carrd ── */
+<!-- jsPDF â gÃ©nÃ©ration PDF cÃ´tÃ© navigateur -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+/* ââ Reset ciblÃ© pour Ã©viter les conflits avec Carrd ââ */
 #rgc-wrap * { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── Variables ── */
+/* ââ Variables ââ */
 #rgc-wrap {
   --bronze:       #B8914A;
   --bronze-light: #D4AB6A;
@@ -28,10 +36,10 @@
   padding: 48px 20px 80px;
 }
 
-/* ── Fonts ── */
+/* ââ Fonts ââ */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap');
 
-/* ── Intro ── */
+/* ââ Intro ââ */
 #rgc-wrap .rgc-intro {
   text-align: center;
   margin-bottom: 48px;
@@ -76,7 +84,7 @@
   line-height: 1.7;
 }
 
-/* ── Cards ── */
+/* ââ Cards ââ */
 #rgc-wrap .rgc-card {
   background: var(--white);
   border: 1px solid var(--card-border);
@@ -115,7 +123,7 @@
   flex-shrink: 0;
 }
 
-/* ── Grille de champs ── */
+/* ââ Grille de champs ââ */
 #rgc-wrap .rgc-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -185,7 +193,7 @@
 }
 #rgc-wrap .rgc-field.rgc-err .rgc-err-msg { display: block; }
 
-/* ── Résultat simulateur ── */
+/* ââ RÃ©sultat simulateur ââ */
 #rgc-wrap #rgc-result-zone { display: none; }
 #rgc-wrap .rgc-result-box {
   border: 1px solid var(--bronze);
@@ -227,7 +235,7 @@
   text-align: center;
 }
 
-/* ── Récapitulatif ── */
+/* ââ RÃ©capitulatif ââ */
 #rgc-wrap .rgc-summary {
   border: 1px solid var(--card-border);
   border-radius: 2px;
@@ -262,7 +270,7 @@
   color: var(--bronze);
 }
 
-/* ── Bouton ── */
+/* ââ Bouton ââ */
 #rgc-wrap .rgc-btn {
   display: block;
   width: 100%;
@@ -296,7 +304,7 @@
 }
 @keyframes rgc-spin { to { transform: rotate(360deg); } }
 
-/* ── Message statut ── */
+/* ââ Message statut ââ */
 #rgc-wrap #rgc-status {
   display: none;
   padding: 13px 16px;
@@ -311,7 +319,7 @@
   color: #e74c3c;
 }
 
-/* ── Confirmation ── */
+/* ââ Confirmation ââ */
 #rgc-wrap #rgc-confirm { display: none; text-align: center; padding: 60px 20px; }
 #rgc-wrap .rgc-check {
   width: 64px; height: 64px;
@@ -332,7 +340,7 @@
 #rgc-wrap #rgc-confirm p {
   font-size: 14px;
   color: var(--gray-mid);
-  max-width: 400px;
+  max-width: 420px;
   margin: 0 auto 32px;
   line-height: 1.7;
 }
@@ -344,6 +352,7 @@
   text-align: left;
   min-width: 280px;
   overflow: hidden;
+  margin-bottom: 32px;
 }
 #rgc-wrap .rgc-confirm-row {
   padding: 12px 20px;
@@ -356,35 +365,67 @@
 }
 #rgc-wrap .rgc-cv { font-size: 13px; color: var(--black); }
 
+/* ââ Bouton upload piÃ¨ces ââ */
+#rgc-wrap .rgc-btn-upload {
+  display: inline-block;
+  background: transparent;
+  color: var(--bronze);
+  border: 1px solid var(--bronze);
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+  margin-top: 8px;
+}
+#rgc-wrap .rgc-btn-upload:hover {
+  background: var(--bronze);
+  color: var(--black);
+}
+#rgc-wrap .rgc-upload-note {
+  font-size: 12px;
+  color: var(--gray-mid);
+  margin-top: 12px;
+  line-height: 1.6;
+}
 </style>
 
+
+<!-- ââââââââââââââââââââââââââââââââââââââââââââ
+     HTML
+ââââââââââââââââââââââââââââââââââââââââââââ -->
 <div id="rgc-wrap">
 
   <!-- INTRO -->
   <div class="rgc-intro">
-    <p class="rgc-eyebrow">Financement Alternatif — Paris</p>
+    <p class="rgc-eyebrow">Financement Alternatif â Paris</p>
     <h2>Simulez le leasing<br><em>de votre client</em></h2>
-    <p>Renseignez le montant et la durée pour obtenir un loyer estimatif, puis transmettez la simulation directement à votre client par email.</p>
+    <p>Renseignez le montant et la durÃ©e pour obtenir un loyer estimatif, puis transmettez la simulation directement Ã  votre client par email.</p>
   </div>
 
-  <!-- ════ FORMULAIRE ════ -->
+  <!-- ââââ FORMULAIRE ââââ -->
   <div id="rgc-form">
 
-    <!-- BLOC 1 — SIMULATEUR -->
+    <!-- BLOC 1 â SIMULATEUR -->
     <div class="rgc-card">
       <div class="rgc-section-label"><span class="rgc-num">1</span> Simulation leasing</div>
       <div class="rgc-grid-sim">
 
         <div class="rgc-field" id="rgcf-montant">
-          <label for="rgc-montant">Montant HT du matériel (€)</label>
+          <label for="rgc-montant">Montant HT du matÃ©riel (â¬)</label>
           <input type="number" id="rgc-montant" placeholder="Ex : 25000" min="500" step="1" autocomplete="off">
-          <span class="rgc-err-msg">Montant minimum : 500 €</span>
+          <span class="rgc-err-msg">Montant minimum : 500 â¬</span>
         </div>
 
         <div class="rgc-field" id="rgcf-duree">
-          <label for="rgc-duree">Durée du financement</label>
+          <label for="rgc-duree">DurÃ©e du financement</label>
           <select id="rgc-duree">
-            <option value="">— Choisir une durée —</option>
+            <option value="">â Choisir une durÃ©e â</option>
             <option value="24">24 mois (2 ans)</option>
             <option value="30">30 mois</option>
             <option value="36">36 mois (3 ans)</option>
@@ -397,28 +438,28 @@
             <option value="84">84 mois (7 ans)</option>
             <option value="96">96 mois (8 ans)</option>
           </select>
-          <span class="rgc-err-msg">Veuillez sélectionner une durée</span>
+          <span class="rgc-err-msg">Veuillez sÃ©lectionner une durÃ©e</span>
         </div>
 
       </div>
 
-      <!-- RÉSULTAT -->
+      <!-- RÃSULTAT -->
       <div id="rgc-result-zone">
         <div class="rgc-result-box">
           <div class="rgc-result-label">Loyer estimatif HT / mois</div>
-          <div class="rgc-result-amount" id="rgc-amount">—</div>
-          <div class="rgc-result-unit" id="rgc-unit">€ HT / mois</div>
+          <div class="rgc-result-amount" id="rgc-amount">â</div>
+          <div class="rgc-result-unit" id="rgc-unit">â¬ HT / mois</div>
         </div>
         <p class="rgc-mention">
-          Simulation indicative, non contractuelle, sous réserve d'analyse complète du dossier,<br>
-          validation financeur et réception des pièces justificatives.
+          Simulation indicative, non contractuelle, sous rÃ©serve d'analyse complÃ¨te du dossier,<br>
+          validation financeur et rÃ©ception des piÃ¨ces justificatives.
         </p>
       </div>
     </div>
 
-    <!-- BLOC 2 — FOURNISSEUR -->
+    <!-- BLOC 2 â FOURNISSEUR -->
     <div class="rgc-card">
-      <div class="rgc-section-label"><span class="rgc-num">2</span> Vos informations — Fournisseur</div>
+      <div class="rgc-section-label"><span class="rgc-num">2</span> Vos informations â Fournisseur</div>
       <div class="rgc-grid">
         <div class="rgc-field" id="rgcf-fnom">
           <label for="rgc-fnom">Nom complet *</label>
@@ -426,8 +467,8 @@
           <span class="rgc-err-msg">Champ obligatoire</span>
         </div>
         <div class="rgc-field" id="rgcf-fsociete">
-          <label for="rgc-fsociete">Société *</label>
-          <input type="text" id="rgc-fsociete" placeholder="Dupont Équipements Pro" autocomplete="organization">
+          <label for="rgc-fsociete">SociÃ©tÃ© *</label>
+          <input type="text" id="rgc-fsociete" placeholder="Dupont Ãquipements Pro" autocomplete="organization">
           <span class="rgc-err-msg">Champ obligatoire</span>
         </div>
         <div class="rgc-field" id="rgcf-femail">
@@ -436,23 +477,23 @@
           <span class="rgc-err-msg">Email invalide</span>
         </div>
         <div class="rgc-field">
-          <label for="rgc-ftel">Téléphone (optionnel)</label>
+          <label for="rgc-ftel">TÃ©lÃ©phone (optionnel)</label>
           <input type="tel" id="rgc-ftel" placeholder="06 12 34 56 78" autocomplete="tel">
         </div>
       </div>
     </div>
 
-    <!-- BLOC 3 — CLIENT -->
+    <!-- BLOC 3 â CLIENT -->
     <div class="rgc-card">
       <div class="rgc-section-label"><span class="rgc-num">3</span> Informations client</div>
       <div class="rgc-grid">
         <div class="rgc-field" id="rgcf-cnom">
-          <label for="rgc-cnom">Prénom et nom du contact *</label>
+          <label for="rgc-cnom">PrÃ©nom et nom du contact *</label>
           <input type="text" id="rgc-cnom" placeholder="Marie Martin" autocomplete="off">
           <span class="rgc-err-msg">Champ obligatoire</span>
         </div>
         <div class="rgc-field" id="rgcf-csociete">
-          <label for="rgc-csociete">Société cliente *</label>
+          <label for="rgc-csociete">SociÃ©tÃ© cliente *</label>
           <input type="text" id="rgc-csociete" placeholder="Restaurant Le Soleil" autocomplete="off">
           <span class="rgc-err-msg">Champ obligatoire</span>
         </div>
@@ -467,31 +508,31 @@
           <span class="rgc-err-msg">Email invalide</span>
         </div>
         <div class="rgc-field">
-          <label for="rgc-ctel">Téléphone client (optionnel)</label>
+          <label for="rgc-ctel">TÃ©lÃ©phone client (optionnel)</label>
           <input type="tel" id="rgc-ctel" placeholder="06 XX XX XX XX" autocomplete="off">
         </div>
         <div class="rgc-field rgc-full">
-          <label for="rgc-cmat">Description du matériel (optionnel)</label>
-          <input type="text" id="rgc-cmat" placeholder="Ex : Équipement cuisine professionnelle, matériel audiovisuel…" autocomplete="off">
+          <label for="rgc-cmat">Description du matÃ©riel (optionnel)</label>
+          <input type="text" id="rgc-cmat" placeholder="Ex : Ãquipement cuisine professionnelle, matÃ©riel audiovisuelâ¦" autocomplete="off">
         </div>
       </div>
     </div>
 
-    <!-- BLOC 4 — RÉCAP + ENVOI -->
+    <!-- BLOC 4 â RÃCAP + ENVOI -->
     <div class="rgc-card" id="rgc-recap" style="display:none;">
-      <div class="rgc-section-label"><span class="rgc-num">4</span> Récapitulatif &amp; envoi</div>
+      <div class="rgc-section-label"><span class="rgc-num">4</span> RÃ©capitulatif &amp; envoi</div>
 
       <div class="rgc-summary">
-        <div class="rgc-sum-row"><span class="rgc-sum-key">Montant HT</span><span class="rgc-sum-val" id="rsum-montant">—</span></div>
-        <div class="rgc-sum-row"><span class="rgc-sum-key">Durée</span><span class="rgc-sum-val" id="rsum-duree">—</span></div>
-        <div class="rgc-sum-row"><span class="rgc-sum-key">Fournisseur</span><span class="rgc-sum-val" id="rsum-fourn">—</span></div>
-        <div class="rgc-sum-row"><span class="rgc-sum-key">Client</span><span class="rgc-sum-val" id="rsum-client">—</span></div>
-        <div class="rgc-sum-row"><span class="rgc-sum-key">SIREN</span><span class="rgc-sum-val" id="rsum-siren">—</span></div>
-        <div class="rgc-sum-row"><span class="rgc-sum-key">Loyer estimatif HT/mois</span><span class="rgc-sum-val rgc-accent" id="rsum-loyer">—</span></div>
+        <div class="rgc-sum-row"><span class="rgc-sum-key">Montant HT</span><span class="rgc-sum-val" id="rsum-montant">â</span></div>
+        <div class="rgc-sum-row"><span class="rgc-sum-key">DurÃ©e</span><span class="rgc-sum-val" id="rsum-duree">â</span></div>
+        <div class="rgc-sum-row"><span class="rgc-sum-key">Fournisseur</span><span class="rgc-sum-val" id="rsum-fourn">â</span></div>
+        <div class="rgc-sum-row"><span class="rgc-sum-key">Client</span><span class="rgc-sum-val" id="rsum-client">â</span></div>
+        <div class="rgc-sum-row"><span class="rgc-sum-key">SIREN</span><span class="rgc-sum-val" id="rsum-siren">â</span></div>
+        <div class="rgc-sum-row"><span class="rgc-sum-key">Loyer estimatif HT/mois</span><span class="rgc-sum-val rgc-accent" id="rsum-loyer">â</span></div>
       </div>
 
       <p class="rgc-mention" style="margin-bottom:20px; text-align:left;">
-        Simulation indicative, non contractuelle, sous réserve d'analyse complète du dossier, validation financeur et réception des pièces justificatives.
+        Simulation indicative, non contractuelle, sous rÃ©serve d'analyse complÃ¨te du dossier, validation financeur et rÃ©ception des piÃ¨ces justificatives.
       </p>
 
       <div id="rgc-status"></div>
@@ -503,38 +544,45 @@
 
   </div><!-- /rgc-form -->
 
-  <!-- ════ CONFIRMATION ════ -->
+  <!-- ââââ CONFIRMATION ââââ -->
   <div id="rgc-confirm">
-    <div class="rgc-check">✓</div>
-    <h3>Simulation envoyée</h3>
-    <p>La simulation a bien été transmise au client par email. Une copie a été adressée à RG Capital et à votre adresse.</p>
+    <div class="rgc-check">â</div>
+    <h3>Simulation envoyÃ©e</h3>
+    <p>La simulation et le PDF ont bien Ã©tÃ© transmis au client, au fournisseur et Ã  RG Capital.</p>
     <div class="rgc-confirm-box">
-      <div class="rgc-confirm-row"><div class="rgc-cl">Client</div><div class="rgc-cv" id="rconf-client">—</div></div>
-      <div class="rgc-confirm-row"><div class="rgc-cl">SIREN</div><div class="rgc-cv" id="rconf-siren">—</div></div>
-      <div class="rgc-confirm-row"><div class="rgc-cl">Loyer estimatif HT/mois</div><div class="rgc-cv" id="rconf-loyer">—</div></div>
-      <div class="rgc-confirm-row"><div class="rgc-cl">Durée</div><div class="rgc-cv" id="rconf-duree">—</div></div>
+      <div class="rgc-confirm-row"><div class="rgc-cl">Client</div><div class="rgc-cv" id="rconf-client">â</div></div>
+      <div class="rgc-confirm-row"><div class="rgc-cl">SIREN</div><div class="rgc-cv" id="rconf-siren">â</div></div>
+      <div class="rgc-confirm-row"><div class="rgc-cl">Loyer estimatif HT/mois</div><div class="rgc-cv" id="rconf-loyer">â</div></div>
+      <div class="rgc-confirm-row"><div class="rgc-cl">DurÃ©e</div><div class="rgc-cv" id="rconf-duree">â</div></div>
     </div>
+    <a id="rgc-upload-link" href="#" class="rgc-btn-upload" target="_blank">
+      ð DÃ©poser les piÃ¨ces justificatives
+    </a>
+    <p class="rgc-upload-note">
+      Bilans N-1 et N-2 + devis fournisseur â transmis directement Ã  RG Capital pour analyse du dossier.
+    </p>
   </div>
 
 </div><!-- /rgc-wrap -->
 
+
+<!-- ââââââââââââââââââââââââââââââââââââââââââââ
+     JAVASCRIPT
+ââââââââââââââââââââââââââââââââââââââââââââ -->
 <script>
-(function waitForDom() {
-  if (!document.getElementById('rgc-montant')) {
-    setTimeout(waitForDom, 50);
-    return;
-  }
+(function() {
+'use strict';
 
-
-// ╔══════════════════════════════════════════╗
-// ║  ⚙️  CONFIGURATION — À MODIFIER          ║
-// ╚══════════════════════════════════════════╝
+// ââââââââââââââââââââââââââââââââââââââââââââ
+// â  âï¸  CONFIGURATION â Ã MODIFIER          â
+// ââââââââââââââââââââââââââââââââââââââââââââ
 var WEBHOOK_URL = 'https://hook.eu1.make.com/m2o8jucm5hih1ooomelqka5ee1we2gsk';
+var UPLOAD_URL  = 'https://yohanng-sketch.github.io/rg-capital-simulateur/upload.html';
 
 
-// ══════════════════════════════════════════════
-// BARÈME COMPLET RG CAPITAL — ne pas modifier
-// ══════════════════════════════════════════════
+// ââââââââââââââââââââââââââââââââââââââââââââââ
+// BARÃME COMPLET RG CAPITAL â ne pas modifier
+// ââââââââââââââââââââââââââââââââââââââââââââââ
 var BAREME = [
   { min: 500,    max: 2500,    taux: { '24':9.44,'30':8.22,'36':7.86,'42':7.59,'48':7.38,'60':7.06,'63':6.78,'66':6.78,'72':6.78,'84':6.78,'96':null } },
   { min: 2501,   max: 5000,    taux: { '24':9.20,'30':7.98,'36':7.63,'42':7.37,'48':7.16,'60':6.85,'63':6.57,'66':6.57,'72':6.57,'84':6.57,'96':null } },
@@ -546,10 +594,10 @@ var BAREME = [
   { min: 150001, max: Infinity, taux: { '24':7.25,'30':6.30,'36':5.97,'42':5.50,'48':5.09,'60':4.81,'63':4.76,'66':4.76,'72':4.76,'84':4.76,'96':null } }
 ];
 
-// ══════════════════════════════════════════════
-// FORMULE — ne pas modifier
-// M = K × (r/12) / (1 − (1 + r/12)^−n)
-// ══════════════════════════════════════════════
+// ââââââââââââââââââââââââââââââââââââââââââââââ
+// FORMULE â ne pas modifier
+// M = K Ã (r/12) / (1 â (1 + r/12)^ân)
+// ââââââââââââââââââââââââââââââââââââââââââââââ
 function getTranche(montant) {
   for (var i = 0; i < BAREME.length; i++) {
     if (montant >= BAREME[i].min && montant <= BAREME[i].max) return BAREME[i];
@@ -562,14 +610,14 @@ function calculerLoyer(montant, tauxAnnuel, nMois) {
   return montant * r / (1 - Math.pow(1 + r, -nMois));
 }
 
-// ══════════════════════════════════════════════
-// ÉTAT
-// ══════════════════════════════════════════════
+// ââââââââââââââââââââââââââââââââââââââââââââââ
+// ÃTAT
+// ââââââââââââââââââââââââââââââââââââââââââââââ
 var state = { loyer: null, surDemande: false };
 
-// ══════════════════════════════════════════════
-// CALCUL EN TEMPS RÉEL
-// ══════════════════════════════════════════════
+// ââââââââââââââââââââââââââââââââââââââââââââââ
+// CALCUL EN TEMPS RÃEL
+// ââââââââââââââââââââââââââââââââââââââââââââââ
 function calculer() {
   var montant = parseFloat(document.getElementById('rgc-montant').value);
   var duree   = document.getElementById('rgc-duree').value;
@@ -590,20 +638,20 @@ function calculer() {
     state.surDemande = true;
     amtEl.className  = 'rgc-result-amount rgc-sur-demande';
     amtEl.textContent = 'Sur demande';
-    unitEl.textContent = 'Contactez RG Capital pour cette durée';
+    unitEl.textContent = 'Contactez RG Capital pour cette durÃ©e';
   } else {
     var loyer = calculerLoyer(montant, taux, parseInt(duree, 10));
     state.loyer = loyer;
     amtEl.className  = 'rgc-result-amount';
     amtEl.textContent = loyer.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    unitEl.textContent = '€ HT / mois';
+    unitEl.textContent = 'â¬ HT / mois';
   }
   refreshRecap();
 }
 
-// ══════════════════════════════════════════════
-// RÉCAPITULATIF
-// ══════════════════════════════════════════════
+// ââââââââââââââââââââââââââââââââââââââââââââââ
+// RÃCAPITULATIF
+// ââââââââââââââââââââââââââââââââââââââââââââââ
 function gv(id) { return document.getElementById(id).value.trim(); }
 
 function refreshRecap() {
@@ -620,13 +668,13 @@ function refreshRecap() {
   }
   recap.style.display = 'block';
 
-  document.getElementById('rsum-montant').textContent = montant.toLocaleString('fr-FR') + ' € HT';
+  document.getElementById('rsum-montant').textContent = montant.toLocaleString('fr-FR') + ' â¬ HT';
   document.getElementById('rsum-duree').textContent   = duree + ' mois';
-  document.getElementById('rsum-fourn').textContent   = fNom + (gv('rgc-fsociete') ? ' — ' + gv('rgc-fsociete') : '');
+  document.getElementById('rsum-fourn').textContent   = fNom + (gv('rgc-fsociete') ? ' â ' + gv('rgc-fsociete') : '');
   document.getElementById('rsum-client').textContent  = cNom + ' (' + cEmail + ')';
-  document.getElementById('rsum-siren').textContent   = gv('rgc-csiren') || '—';
+  document.getElementById('rsum-siren').textContent   = gv('rgc-csiren') || 'â';
   document.getElementById('rsum-loyer').textContent   = state.surDemande ? 'Sur demande' :
-    (state.loyer ? state.loyer.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' € HT/mois' : '—');
+    (state.loyer ? state.loyer.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' â¬ HT/mois' : 'â');
 }
 
 // Listeners
@@ -638,9 +686,176 @@ document.getElementById('rgc-duree').addEventListener('change', calculer);
   document.getElementById(id).addEventListener('input', refreshRecap);
 });
 
-// ══════════════════════════════════════════════
+// ââââââââââââââââââââââââââââââââââââââââââââââ
+// GÃNÃRATION PDF â en-tÃªte fournisseur
+// ââââââââââââââââââââââââââââââââââââââââââââââ
+function genererPDF(data) {
+  try {
+    var jsPDF = window.jspdf ? window.jspdf.jsPDF : (window.jsPDF || null);
+    if (!jsPDF) return null;
+
+    var doc = new jsPDF('p', 'mm', 'a4');
+    var pw  = 210; // largeur A4
+    var mg  = 18;  // marge
+    var cw  = pw - mg * 2; // largeur contenu
+    var y   = 0;
+
+    // ââ COULEURS ââ
+    var BRONZE  = [184, 145, 74];
+    var BLACK   = [13, 13, 13];
+    var GRAY    = [100, 100, 100];
+    var LGRAY   = [228, 228, 224];
+    var CREAM   = [250, 250, 248];
+    var WHITE   = [255, 255, 255];
+
+    // ââ HEADER FOURNISSEUR (fond bronze) ââ
+    doc.setFillColor(BRONZE[0], BRONZE[1], BRONZE[2]);
+    doc.rect(0, 0, pw, 46, 'F');
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.text(data.fournisseur_societe.toUpperCase(), mg, 18);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(30, 30, 30);
+    var fInfoLine = data.fournisseur_nom;
+    if (data.fournisseur_email) fInfoLine += '  Â·  ' + data.fournisseur_email;
+    if (data.fournisseur_telephone) fInfoLine += '  Â·  ' + data.fournisseur_telephone;
+    doc.text(fInfoLine, mg, 27);
+
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(8);
+    doc.setTextColor(40, 40, 40);
+    doc.text('Document prÃ©parÃ© par RG Capital â Financement Alternatif', mg, 36);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(40, 40, 40);
+    doc.text('Date : ' + data.simulation_date, pw - mg, 36, { align: 'right' });
+
+    y = 56;
+
+    // ââ TITRE SIMULATION ââ
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(13);
+    doc.setTextColor(BLACK[0], BLACK[1], BLACK[2]);
+    doc.text('SIMULATION DE FINANCEMENT LEASING', mg, y);
+    y += 4;
+    doc.setDrawColor(BRONZE[0], BRONZE[1], BRONZE[2]);
+    doc.setLineWidth(0.6);
+    doc.line(mg, y, pw - mg, y);
+    y += 10;
+
+    // ââ BLOC CLIENT ââ
+    doc.setFillColor(CREAM[0], CREAM[1], CREAM[2]);
+    doc.roundedRect(mg, y, cw, data.client_description_materiel ? 52 : 44, 1, 1, 'F');
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.5);
+    doc.setTextColor(BRONZE[0], BRONZE[1], BRONZE[2]);
+    doc.text('DOSSIER CLIENT', mg + 6, y + 8);
+    y += 13;
+
+    var clientRows = [
+      ['SociÃ©tÃ©', data.client_societe],
+      ['Contact', data.client_nom],
+      ['SIREN', data.client_siren],
+      ['Email', data.client_email]
+    ];
+    if (data.client_telephone) clientRows.push(['TÃ©lÃ©phone', data.client_telephone]);
+    if (data.client_description_materiel) clientRows.push(['MatÃ©riel', data.client_description_materiel]);
+
+    clientRows.forEach(function(row) {
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(GRAY[0], GRAY[1], GRAY[2]);
+      doc.text(row[0], mg + 6, y);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(BLACK[0], BLACK[1], BLACK[2]);
+      doc.text(row[1] || 'â', mg + 38, y);
+      y += 7;
+    });
+
+    y += 6;
+
+    // ââ BLOC SIMULATION ââ
+    doc.setFillColor(BLACK[0], BLACK[1], BLACK[2]);
+    doc.roundedRect(mg, y, cw, 52, 1, 1, 'F');
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.5);
+    doc.setTextColor(BRONZE[0], BRONZE[1], BRONZE[2]);
+    doc.text('RÃSULTATS DE SIMULATION', mg + 6, y + 8);
+    y += 15;
+
+    // Ligne montant
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(180, 180, 180);
+    doc.text('Montant HT du matÃ©riel', mg + 6, y);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(255, 255, 255);
+    doc.text(data.simulation_montant_ht.toLocaleString('fr-FR') + ' â¬', pw - mg - 4, y, { align: 'right' });
+    y += 9;
+
+    // Ligne durÃ©e
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(180, 180, 180);
+    doc.text('DurÃ©e de financement', mg + 6, y);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(255, 255, 255);
+    doc.text(data.simulation_duree_mois + ' mois', pw - mg - 4, y, { align: 'right' });
+    y += 9;
+
+    // Ligne loyer (mise en valeur)
+    doc.setFillColor(BRONZE[0], BRONZE[1], BRONZE[2]);
+    doc.roundedRect(mg + 2, y - 5, cw - 4, 12, 1, 1, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(0, 0, 0);
+    doc.text('Loyer estimatif HT / mois', mg + 6, y + 2);
+    doc.setFontSize(11);
+    doc.text(data.simulation_loyer_texte, pw - mg - 4, y + 2, { align: 'right' });
+    y += 18;
+
+    // ââ MENTION LÃGALE ââ
+    y += 6;
+    doc.setDrawColor(LGRAY[0], LGRAY[1], LGRAY[2]);
+    doc.setLineWidth(0.3);
+    doc.line(mg, y, pw - mg, y);
+    y += 6;
+
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(7);
+    doc.setTextColor(GRAY[0], GRAY[1], GRAY[2]);
+    var mention = 'Simulation indicative, non contractuelle, sous rÃ©serve d\'analyse complÃ¨te du dossier, validation financeur et rÃ©ception des piÃ¨ces justificatives.';
+    var mentionLines = doc.splitTextToSize(mention, cw);
+    doc.text(mentionLines, mg, y);
+    y += mentionLines.length * 4 + 8;
+
+    // ââ FOOTER RG CAPITAL ââ
+    doc.setFillColor(13, 13, 13);
+    doc.rect(0, 280, pw, 17, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(BRONZE[0], BRONZE[1], BRONZE[2]);
+    doc.text('RG Capital', mg, 290);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(180, 180, 180);
+    doc.text('www.rg-capital.fr  Â·  contact@rg-capital.fr  Â·  Financement alternatif pour professionnels', mg + 22, 290);
+
+    return doc.output('datauristring').split(',')[1]; // base64 only
+  } catch(e) {
+    console.warn('PDF generation failed:', e);
+    return null;
+  }
+}
+
+// ââââââââââââââââââââââââââââââââââââââââââââââ
 // VALIDATION
-// ══════════════════════════════════════════════
+// ââââââââââââââââââââââââââââââââââââââââââââââ
 function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
 function isSiren(v) { return /^\d{9}$/.test(v.replace(/\s/g, '')); }
 
@@ -668,9 +883,9 @@ function valider() {
   return ok;
 }
 
-// ══════════════════════════════════════════════
+// ââââââââââââââââââââââââââââââââââââââââââââââ
 // ENVOI VERS MAKE
-// ══════════════════════════════════════════════
+// ââââââââââââââââââââââââââââââââââââââââââââââ
 document.getElementById('rgc-btn').addEventListener('click', function() {
   if (!valider()) {
     var first = document.querySelector('#rgc-wrap .rgc-err input, #rgc-wrap .rgc-err select');
@@ -680,62 +895,55 @@ document.getElementById('rgc-btn').addEventListener('click', function() {
 
   var btn    = document.getElementById('rgc-btn');
   var status = document.getElementById('rgc-status');
-
-  btn.classList.add('rgc-loading'); btn.disabled = true;
-  status.style.display = 'none'; status.className = '';
-
-  var montant   = parseFloat(document.getElementById('rgc-montant').value);
-  var duree     = document.getElementById('rgc-duree').value;
-  var sirenRaw  = gv('rgc-csiren').replace(/\s/g, '');
-
-  var loyerTexte = state.surDemande ? 'Sur demande' :
-    (state.loyer ? state.loyer.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' € HT/mois' : '—');
-
-  // ── Payload PLAT envoyé à Make (structure aplatie pour compatibilité Make.com) ──
-  var payload = {
-    simulation_montant_ht:      montant,
-    simulation_duree_mois:      parseInt(duree, 10),
-    simulation_loyer_estime_ht: state.surDemande ? null : (state.loyer ? Math.round(state.loyer * 100) / 100 : null),
-    simulation_loyer_texte:     loyerTexte,
-    simulation_sur_demande:     state.surDemande,
-    simulation_date:            new Date().toLocaleDateString('fr-FR'),
-    simulation_mention_legale:  'Simulation indicative, non contractuelle, sous réserve d\'analyse complète du dossier, validation financeur et réception des pièces justificatives.',
-    fournisseur_nom:       gv('rgc-fnom'),
-    fournisseur_societe:   gv('rgc-fsociete'),
-    fournisseur_email:     gv('rgc-femail'),
-    fournisseur_telephone: gv('rgc-ftel'),
-    client_nom:                  gv('rgc-cnom'),
-    client_societe:              gv('rgc-csociete'),
-    client_siren:                sirenRaw,
-    client_email:                gv('rgc-cemail'),
-    client_telephone:            gv('rgc-ctel'),
-    client_description_materiel: gv('rgc-cmat')
-  };
-
-    fetch(WEBHOOK_URL, {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify(payload)
-  })
-  .then(function(res) {
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    // Succès
-    document.getElementById('rgc-form').style.display  = 'none';
-    document.getElementById('rconf-client').textContent = gv('rgc-cnom') + ' — ' + gv('rgc-csociete');
-    document.getElementById('rconf-siren').textContent  = sirenRaw;
-    document.getElementById('rconf-loyer').textContent  = loyerTexte;
-    document.getElementById('rconf-duree').textContent  = duree + ' mois';
-    document.getElementById('rgc-confirm').style.display = 'block';
-    document.getElementById('rgc-wrap').scrollIntoView({ behavior: 'smooth' });
-  })
-  .catch(function() {
-    status.textContent = 'Erreur lors de l\'envoi. Veuillez réessayer ou contacter RG Capital directement.';
-    status.className = 'rgc-status-error';
-    status.style.display = 'block';
-    btn.classList.remove('rgc-loading'); btn.disabled = false;
-  });
-});
-
-
-})();
-</script>
+  btn.classList.add('rgc-loading'); btn.disabled = truNÂÝ]\ËÝ[K\Ü^HH	ÛÛIÎÈÝ]\ËÛ\ÜÓ[YHH	ÉÎÂ\[Û[H\ÙQØ]
+ØÝ[Y[Ù][[Y[RY
+	ÜØË[[Û[	ÊK[YJNÂ\\YHHØÝ[Y[Ù][[Y[RY
+	ÜØËY\YIÊK[YNÂ\Ú\[]ÈHÝ	ÜØËXÜÚ\[ÊK\XÙJ×ËÙË	ÉÊNÂ\ÞY\^HHÝ]KÝ\[X[HÈ	ÔÝ\[X[IÈ
+Ý]KÞY\ÈÝ]KÞY\ÓØØ[TÝ[Ê	ÙQËÈZ[[][QXÝ[ÛYÚ]ÎX^[][QXÝ[ÛYÚ]ÎJH
+È	È8 «Û[Ú\ÉÈ	ø %	ÊNÂËÈ8¥ 8¥ ^[ØYU[ÞpêH0èXZÙH8¥ 8¥ \^[ØYHÂÚ[][][ÛÛ[Û[Ú[Û[Ú[][][ÛÙ\YWÛ[Ú\Î\ÙR[
+\YKL
+KÚ[][][ÛÛÞY\Ù\Ý[YWÚÝ]KÝ\[X[HÈ[
+Ý]KÞY\ÈX]Ý[
+Ý]KÞY\
+L
+HÈL[
+KÚ[][][ÛÛÞY\Ý^NÞY\^KÚ[][][ÛÜÝ\Ù[X[NÝ]KÝ\[X[KÚ[][][ÛÙ]N]È]J
+KÓØØ[Q]TÝ[Ê	ÙQÊKÚ[][][ÛÛY[[ÛÛYØ[N	ÔÚ[][][Û[XØ]]KÛÛÛXÝY[KÛÝ\È°ê\Ù\H	Ø[[\ÙHÛÛ\0êHHÜÜÚY\[Y][Û[[Ù]\]°êXÙ\[Û\ÈpêÙ\È\ÝYXØ]]\ËËÝ\\ÜÙ]\ÛÛNÝ	ÜØËYÛIÊKÝ\\ÜÙ]\ÜÛØÚY]NÝ	ÜØËYÛØÚY]IÊKÝ\\ÜÙ]\Ù[XZ[Ý	ÜØËY[XZ[	ÊKÝ\\ÜÙ]\Ý[\ÛNÝ	ÜØËY[	ÊKÛY[ÛÛNÝ	ÜØËXÛÛIÊKÛY[ÜÛØÚY]NÝ	ÜØËXÜÛØÚY]IÊKÛY[ÜÚ\[Ú\[]ËÛY[Ù[XZ[Ý	ÜØËXÙ[XZ[	ÊKÛY[Ý[\ÛNÝ	ÜØËXÝ[	ÊKÛY[Ù\ØÜ\[ÛÛX]\Y[Ý	ÜØËXÛX]	ÊKËÈT\ØYpêÙ\È
+]XÈ°êK\[\\ÜØYÙHÛY[
+B\ØYÝ\TÐQÕT
+È	ÏØÛY[IÈ
+È[ÛÙUTPÛÛ\Û[
+Ý	ÜØËXÛÛIÊJH
+Â	ÉÛØÚY]OIÈ
+È[ÛÙUTPÛÛ\Û[
+Ý	ÜØËXÜÛØÚY]IÊJH
+Â	ÉÚ\[IÈ
+È[ÛÙUTPÛÛ\Û[
+Ú\[]ÊBNÂËÈ8¥ 8¥ ðê[°ê\][Û
+[]0êHÝ\\ÜÙ]\H8¥ 8¥ \\ÙMHÙ[\\^[ØY
+NÂY
+\ÙM
+HÂ^[ØYØ\ÙMH\ÙMÂ^[ØYÙ[[[YHH	ÔÚ[][][ÛÔ×ÐØ\][ÉÈ
+ÈÝ	ÜØËXÜÛØÚY]IÊK\XÙJ×ÊËÙË	×ÉÊH
+È	×ÉÈ
+È]È]J
+KÓØØ[Q]TÝ[Ê	ÙQÊK\XÙJ×ËÙË	ËIÊH
+È	ËÎÂB]Ú
+ÑPÓÒ×ÕTÂY]Ù	ÔÔÕ	ËXY\ÎÈ	ÐÛÛ[U\IÎ	Ø\XØ][ÛÚÛÛÈKÙNÓÓÝ[ÚYJ^[ØY
+BJB[[Ý[Û\ÊHÂY
+\\ËÚÊHÝÈ]È\Ü	Ò	È
+È\ËÝ]\ÊNÂËÈÝXØðêÈ8 %YXÚYÙHÛÛ\X][ÛØÝ[Y[Ù][[Y[RY
+	ÜØËYÜIÊKÝ[K\Ü^HH	ÛÛIÎÂØÝ[Y[Ù][[Y[RY
+	ÜÛÛXÛY[	ÊK^ÛÛ[HÝ	ÜØËXÛÛIÊH
+È	È8 %	È
+ÈÝ	ÜØËXÜÛØÚY]IÊNÂØÝ[Y[Ù][[Y[RY
+	ÜÛÛ\Ú\[ÊK^ÛÛ[HÚ\[]ÎÂØÝ[Y[Ù][[Y[RY
+	ÜÛÛ[ÞY\ÊK^ÛÛ[HÞY\^NÂØÝ[Y[Ù][[Y[RY
+	ÜÛÛY\YIÊK^ÛÛ[H\YH
+È	È[Ú\ÉÎÂËÈY[\ØY°ê\[\BØÝ[Y[Ù][[Y[RY
+	ÜØË]\ØY[[ÉÊKYH^[ØY\ØYÝ\ÂØÝ[Y[Ù][[Y[RY
+	ÜØËXÛÛ\IÊKÝ[K\Ü^HH	ØØÚÉÎÂØÝ[Y[Ù][[Y[RY
+	ÜØË]Ü\	ÊKØÜÛ[ÕY]ÊÈZ][Ü	ÜÛ[ÛÝ	ÈJNÂJBØ]Ú
+[Ý[Û
+HÂÝ]\Ë^ÛÛ[H	Ñ\]\ÜÈH	Ù[ÚK]Z[^°êY\ÜØ^Y\ÝHÛÛXÝ\ÈØ\][\XÝ[Y[ÎÂÝ]\ËÛ\ÜÓ[YHH	ÜØË\Ý]\ËY\ÜÎÂÝ]\ËÝ[K\Ü^HH	ØØÚÉÎÂÛ\ÜÓ\Ý[[ÝJ	ÜØË[ØY[ÉÊNÈ\ØXYH[ÙNÂJNÂJNÂJJ
+NÂÜØÜ\
