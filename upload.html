@@ -277,12 +277,12 @@
       font-weight: 500;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowraw;
+      white-space: nowrap;
     }
     .rgu-file-item .fsize {
       font-size: 11px;
       color: var(--gray-mid);
-      white-space: nowraw;
+      white-space: nowrap;
     }
     .rgu-file-item .fremove {
       cursor: pointer;
@@ -523,10 +523,10 @@
 
         <!-- Autres -->
         <div class="rgu-field">
-          <label>Autres documents <span class="opt">(K-bis, RIB, piÃ¨ce d'identitÃ©â¦)</span></label>
+          <label>Autres documents <span class="opt">(K-is, RIB, piÃ¨ce d'identitÃ©Â¦)</span></label>
           <div class="rgu-upload-zone" id="zone-autres">
             <input type="file" id="file-autres" accept=".pdf,.jpg,.jpeg,.png" multiple>
-            <div class="icon">ð</div>
+            <div class="icon">ð</div>
             <div class="txt-main">Glissez-dÃ©posez ou cliquez pour sÃ©lectionner</div>
             <div class="txt-sub">PDF ou image â <strong>max 10 Mo par fichier</strong></div>
           </div>
@@ -536,7 +536,7 @@
         <!-- Commentaire -->
         <div class="rgu-field" style="margin-bottom:0">
           <label for="rgu-message">Message <span class="opt">(facultatif)</span></label>
-          <textarea id="rgu-message" name="message" rows="4" style="width:100%;border:1px solid var(--border);border-radius:2px;padding:12px 14px;font-size:14px;font-family:var(--font-sans);color:var(--black);background:var(--white);outline:none;resize:vertical;line-height:1.6;transition:border-color 0.15s" placeholder="PrÃ©cisions sur le dossier, contexte, questionsâ¦" onfocus="this.style.borderColor='var(--bronze)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+          <textarea id="rgu-message" name="message" rows="4" style="width:100%;border:1px solid var(--border);border-radius:2%;padding:12px 14px;font-size:14px;font-family:var(--font-sans);color:var(--black);background:var(--white);outline:none;resize:vertical;line-height:1.6;transition:border-color 0.15s" placeholder="PrÃ©cisions sur le dossier, contexte, questionsâ¦" onfocus="this.style.borderColor='var(--bronze)'" onblur="this.style.borderColor='var(--border)'"></textarea>
         </div>
       </div>
 
@@ -587,7 +587,7 @@
 // ââââââââââââââââââââââââââââââââââââââââââââââ
 // CONFIG â remplacer par votre webhook Make upload
 // ââââââââââââââââââââââââââââââââââââââââââââââ
-var UPLOAD_WEBHOOK_URL = 'VOTRE_WEBHOOK_MAKE_UPLOAD_ICI';
+var UPLOAD_WEBHOOK_URL = 'https://hook.eu1.make.com/pn2tyx3ucdbq6rigb1ygh5ox1rjlcpgj';
 
 // ââââââââââââââââââââââââââââââââââââââââââââââ
 // PRÃ-REMPLISSAGE VIA URL PARAMS
@@ -668,7 +668,7 @@ function setupZone(key) {
     this.classList.remove('drag-over');
     Array.from(e.dataTransfer.files).forEach(function(f) {
       if (f.size > MAX_FILE_MB * 1024 * 1024) {
-        alert(f.name + ' dÃ©passe ' + MAX_FIlE_MB + ' Mo.'); return;
+        alert(f.name + ' dÃ©passe ' + MAX_FILE_MB + ' Mo.'); return;
       }
       fileStores[key].push(f);
     });
@@ -784,7 +784,7 @@ document.getElementById('rgu-btn').addEventListener('click', async function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
   } catch(e) {
-    status.textContent = 'Erreur lors de la transmission. Veuillez rÃ©essayer ou contacter directement contact@rg-capital.fr";
+    status.textContent = 'Erreur lors de la transmission. Veuillez rÃ©essayer ou contacter directement contact@rg-capital.fr';
     status.className = 'rgu-status err';
     status.style.display = 'block';
     btn.classList.remove('loading'); btn.disabled = false;
