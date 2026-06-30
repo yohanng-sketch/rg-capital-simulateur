@@ -1,794 +1,773 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RG Capital â DÃ©pÃ´t de piÃ¨ces</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RG Capital â Dépôt de pièces</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bronze:       #B8914A;
-      --bronze-light: #D4AB6A;
-      --black:        #0D0D0D;
-      --cream:        #FAFAF8;
-      --white:        #FFFFFF;
-      --border:       #E4E4E0;
-      --gray-mid:     #7A7A7A;
-      --gray-dark:    #555555;
-      --error:        #C0392B;
-      --success:      #1A7A4A;
-      --font-serif:   'Cormorant Garamond', Georgia, serif;
-      --font-sans:    'Inter', system-ui, sans-serif;
-    }
+:root {
+--bronze: #B8914A;
+--bronze-light: #D4AB6A;
+--black: #0D0D0D;
+--cream: #FAFAF8;
+--white: #FFFFFF;
+--border: #E4E4E0;
+--gray-mid: #7A7A7A;
+--gray-dark: #555555;
+--error: #C0392B;
+--success: #1A7A4A;
+--font-serif: 'Cormorant Garamond', Georgia, serif;
+--font-sans: 'Inter', system-ui, sans-serif;
+}
 
-    html, body {
-      background: var(--cream);
-      color: var(--black);
-      font-family: var(--font-sans);
-      font-size: 15px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-    }
+html, body {
+background: var(--cream);
+color: var(--black);
+font-family: var(--font-sans);
+font-size: 15px;
+line-height: 1.6;
+-webkit-font-smoothing: antialiased;
+min-height: 100vh;
+}
 
-    /* ââ HEADER ââ */
-    .rgu-header {
-      background: var(--black);
-      padding: 20px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .rgu-header-logo {
-      font-family: var(--font-serif);
-      font-size: 22px;
-      font-weight: 400;
-      color: var(--white);
-      letter-spacing: 0.04em;
-      text-decoration: none;
-    }
-    .rgu-header-logo span {
-      color: var(--bronze);
-    }
-    .rgu-header-tag {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--bronze);
-    }
+/* -- HEADER -- */
+.rgu-header {
+background: var(--black);
+padding: 20px 32px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.rgu-header-logo {
+font-family: var(--font-serif);
+font-size: 22px;
+font-weight: 400;
+color: var(--white);
+letter-spacing: 0.04em;
+text-decoration: none;
+}
+.rgu-header-logo span {
+color: var(--bronze);
+}
+.rgu-header-tag {
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(--bronze);
+}
 
-    /* ââ MAIN ââ */
-    .rgu-main {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 56px 20px 100px;
-    }
+/* -- MAIN -- */
+.rgu-main {
+max-width: 680px;
+margin: 0 auto;
+padding: 56px 20px 100px;
+}
 
-    /* ââ INTRO ââ */
-    .rgu-intro {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-    .rgu-eyebrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--bronze);
-      margin-bottom: 18px;
-    }
-    .rgu-eyebrow::before, .rgu-eyebrow::after {
-      content: '';
-      width: 36px;
-      height: 1px;
-      background: var(--bronze);
-      opacity: 0.5;
-    }
-    .rgu-intro h1 {
-      font-family: var(--font-serif);
-      font-size: clamp(28px, 5vw, 42px);
-      font-weight: 400;
-      line-height: 1.15;
-      color: var(--black);
-      margin-bottom: 14px;
-    }
-    .rgu-intro h1 em {
-      font-style: italic;
-      color: var(--bronze-light);
-    }
-    .rgu-intro p {
-      font-size: 14px;
-      color: var(--gray-mid);
-      max-width: 460px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
+/* -- INTRO -- */
+.rgu-intro {
+text-align: center;
+margin-bottom: 48px;
+}
+.rgu-eyebrow {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 12px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--bronze);
+margin-bottom: 18px;
+}
+.rgu-eyebrow::before, .rgu-eyebrow::after {
+content: '';
+width: 36px;
+height: 1px;
+background: var(--bronze);
+opacity: 0.5;
+}
+.rgu-intro h1 {
+font-family: var(--font-serif);
+font-size: clamp(28px, 5vw, 42px);
+font-weight: 400;
+line-height: 1.15;
+color: var(--black);
+margin-bottom: 14px;
+}
+.rgu-intro h1 em {
+font-style: italic;
+color: var(--bronze-light);
+}
+.rgu-intro p {
+font-size: 14px;
+color: var(--gray-mid);
+max-width: 460px;
+margin: 0 auto;
+line-height: 1.7;
+}
 
-    /* ââ INFO CLIENT (prÃ©remplie) ââ */
-    .rgu-client-banner {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--bronze);
-      border-radius: 2px;
-      padding: 18px 22px;
-      margin-bottom: 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .rgu-client-banner .label {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--bronze);
-      margin-bottom: 4px;
-    }
-    .rgu-client-banner .val {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--black);
-    }
-    .rgu-client-banner .siren {
-      font-size: 13px;
-      color: var(--gray-mid);
-    }
+/* -- INFO CLIENT (preremplie) -- */
+.rgu-client-banner {
+background: var(--white);
+border: 1px solid var(--border);
+border-left: 3px solid var(--bronze);
+border-radius: 2px;
+padding: 18px 22px;
+margin-bottom: 28px;
+display: flex;
+flex-direction: column;
+gap: 4px;
+}
+.rgu-client-banner .label {
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(--bronze);
+margin-bottom: 4px;
+}
+.rgu-client-banner .val {
+font-size: 15px;
+font-weight: 500;
+color: var(--black);
+}
+.rgu-client-banner .siren {
+font-size: 13px;
+color: var(--gray-mid);
+}
 
-    /* ââ CARD ââ */
-    .rgu-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 32px 36px;
-      margin-bottom: 18px;
-    }
-    .rgu-section-label {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gray-dark);
-      margin-bottom: 24px;
-    }
-    .rgu-section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
+/* -- CARD -- */
+.rgu-card {
+background: var(--white);
+border: 1px solid var(--border);
+border-radius: 2px;
+padding: 32px 36px;
+margin-bottom: 18px;
+}
+.rgu-section-label {
+display: flex;
+align-items: center;
+gap: 12px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(--gray-dark);
+margin-bottom: 24px;
+}
+.rgu-section-label::after {
+content: '';
+flex: 1;
+height: 1px;
+background: var(--border);
+}
 
-    /* ââ CHAMPS ââ */
-    .rgu-field {
-      margin-bottom: 20px;
-    }
-    .rgu-field label {
-      display: block;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--gray-dark);
-      margin-bottom: 8px;
-      letter-spacing: 0.03em;
-    }
-    .rgu-field label .opt {
-      font-weight: 400;
-      color: var(--gray-mid);
-      font-size: 11px;
-      margin-left: 4px;
-    }
-    .rgu-field input[type="text"],
-    .rgu-field input[type="email"],
-    .rgu-field select {
-      width: 100%;
-      height: 46px;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 0 14px;
-      font-size: 14px;
-      font-family: var(--font-sans);
-      color: var(--black);
-      background: var(--white);
-      outline: none;
-      transition: border-color 0.15s;
-    }
-    .rgu-field input:focus,
-    .rgu-field select:focus {
-      border-color: var(--bronze);
-    }
-    .rgu-field.rgu-err input,
-    .rgu-field.rgu-err select {
-      border-color: var(--error);
-    }
+/* -- CHAMPS -- */
+.rgu-field {
+margin-bottom: 20px;
+}
+.rgu-field label {
+display: block;
+font-size: 12px;
+font-weight: 500;
+color: var(--gray-dark);
+margin-bottom: 8px;
+letter-spacing: 0.03em;
+}
+.rgu-field label .opt {
+font-weight: 400;
+color: var(--gray-mid);
+font-size: 11px;
+margin-left: 4px;
+}
+.rgu-field input[type="text"],
+.rgu-field input[type="email"],
+.rgu-field select {
+width: 100%;
+height: 46px;
+border: 1px solid var(--border);
+border-radius: 2px;
+padding: 0 14px;
+font-size: 14px;
+font-family: var(--font-sans);
+color: var(--black);
+background: var(--white);
+outline: none;
+transition: border-color 0.15s;
+}
+.rgu-field input:focus,
+.rgu-field select:focus {
+border-color: var(--bronze);
+}
+.rgu-field.rgu-err input,
+.rgu-field.rgu-err select {
+border-color: var(--error);
+}
 
-    /* ââ UPLOAD ZONE ââ */
-    .rgu-upload-zone {
-      border: 1.5px dashed var(--border);
-      border-radius: 3px;
-      padding: 28px 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-      background: var(--cream);
-      position: relative;
-    }
-    .rgu-upload-zone:hover, .rgu-upload-zone.drag-over {
-      border-color: var(--bronze);
-      background: #fdf9f4;
-    }
-    .rgu-upload-zone input[type="file"] {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      cursor: pointer;
-      width: 100%;
-      height: 100%;
-    }
-    .rgu-upload-zone .icon {
-      font-size: 28px;
-      margin-bottom: 8px;
-      color: var(--bronze);
-    }
-    .rgu-upload-zone .txt-main {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--black);
-      margin-bottom: 4px;
-    }
-    .rgu-upload-zone .txt-sub {
-      font-size: 12px;
-      color: var(--gray-mid);
-    }
-    .rgu-upload-zone .txt-sub strong {
-      color: var(--bronze);
-    }
+/* -- UPLOAD ZONE -- */
+.rgu-upload-zone {
+border: 1.5px dashed var(--border);
+border-radius: 3px;
+padding: 28px 20px;
+text-align: center;
+cursor: pointer;
+transition: border-color 0.2s, background 0.2s;
+background: var(--cream);
+position: relative;
+}
+.rgu-upload-zone:hover, .rgu-upload-zone.drag-over {
+border-color: var(--bronze);
+background: #fdf9f4;
+}
+.rgu-upload-zone input[type="file"] {
+position: absolute;
+inset: 0;
+opacity: 0;
+cursor: pointer;
+width: 100%;
+height: 100%;
+}
+.rgu-upload-zone .icon {
+font-size: 28px;
+margin-bottom: 8px;
+color: var(--bronze);
+}
+.rgu-upload-zone .txt-main {
+font-size: 14px;
+font-weight: 500;
+color: var(--black);
+margin-bottom: 4px;
+}
+.rgu-upload-zone .txt-sub {
+font-size: 12px;
+color: var(--gray-mid);
+}
+.rgu-upload-zone .txt-sub strong {
+color: var(--bronze);
+}
 
-    .rgu-file-list {
-      margin-top: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .rgu-file-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      font-size: 13px;
-    }
-    .rgu-file-item .fname {
-      flex: 1;
-      color: var(--black);
-      font-weight: 500;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .rgu-file-item .fsize {
-      font-size: 11px;
-      color: var(--gray-mid);
-      white-space: nowrap;
-    }
-    .rgu-file-item .fremove {
-      cursor: pointer;
-      color: var(--gray-mid);
-      font-size: 16px;
-      line-height: 1;
-      padding: 2px 4px;
-      border: none;
-      background: none;
-      transition: color 0.15s;
-    }
-    .rgu-file-item .fremove:hover { color: var(--error); }
+.rgu-file-list {
+margin-top: 14px;
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+.rgu-file-item {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px 14px;
+background: var(--white);
+border: 1px solid var(--border);
+border-radius: 2px;
+font-size: 13px;
+}
+.rgu-file-item .fname {
+flex: 1;
+color: var(--black);
+font-weight: 500;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+.rgu-file-item .fsize {
+font-size: 11px;
+color: var(--gray-mid);
+white-space: nowrap;
+}
+.rgu-file-item .fremove {
+cursor: pointer;
+color: var(--gray-mid);
+font-size: 16px;
+line-height: 1;
+padding: 2px 4px;
+border: none;
+background: none;
+transition: color 0.15s;
+}
+.rgu-file-item .fremove:hover { color: var(--error); }
 
-    /* ââ CHECKBOX ââ */
-    .rgu-consent {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 16px;
-      background: var(--cream);
-      border-radius: 2px;
-      margin-top: 8px;
-    }
-    .rgu-consent input[type="checkbox"] {
-      margin-top: 3px;
-      flex-shrink: 0;
-      accent-color: var(--bronze);
-      width: 16px;
-      height: 16px;
-      cursor: pointer;
-    }
-    .rgu-consent label {
-      font-size: 12px;
-      color: var(--gray-dark);
-      line-height: 1.6;
-      cursor: pointer;
-    }
+/* -- CHECKBOX -- */
+.rgu-consent {
+display: flex;
+align-items: flex-start;
+gap: 12px;
+padding: 16px;
+background: var(--cream);
+border-radius: 2px;
+margin-top: 8px;
+}
+.rgu-consent input[type="checkbox"] {
+margin-top: 3px;
+flex-shrink: 0;
+accent-color: var(--bronze);
+width: 16px;
+height: 16px;
+cursor: pointer;
+}
+.rgu-consent label {
+font-size: 12px;
+color: var(--gray-dark);
+line-height: 1.6;
+cursor: pointer;
+}
 
-    /* ââ BOUTON ââ */
-    .rgu-btn {
-      width: 100%;
-      height: 54px;
-      background: var(--bronze);
-      color: var(--black);
-      border: none;
-      border-radius: 2px;
-      font-size: 13px;
-      font-weight: 600;
-      font-family: var(--font-sans);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.18s, opacity 0.18s;
-      margin-top: 8px;
-    }
-    .rgu-btn:hover { background: var(--bronze-light); }
-    .rgu-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-    .rgu-btn.loading { opacity: 0.7; cursor: not-allowed; }
+/* -- BOUTON -- */
+.rgu-btn {
+width: 100%;
+height: 54px;
+background: var(--bronze);
+color: var(--black);
+border: none;
+border-radius: 2px;
+font-size: 13px;
+font-weight: 600;
+font-family: var(--font-sans);
+letter-spacing: 0.1em;
+text-transform: uppercase;
+cursor: pointer;
+transition: background 0.18s, opacity 0.18s;
+margin-top: 8px;
+}
+.rgu-btn:hover { background: var(--bronze-light); }
+.rgu-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.rgu-btn.loading { opacity: 0.7; cursor: not-allowed; }
 
-    /* ââ STATUT / ERREUR ââ */
-    .rgu-status {
-      margin-top: 16px;
-      padding: 14px 18px;
-      border-radius: 2px;
-      font-size: 13px;
-      display: none;
-    }
-    .rgu-status.err {
-      background: #fdf2f1;
-      border: 1px solid #e8b4b0;
-      color: var(--error);
-    }
+/* -- STATUT / ERREUR -- */
+.rgu-status {
+margin-top: 16px;
+padding: 14px 18px;
+border-radius: 2px;
+font-size: 13px;
+display: none;
+}
+.rgu-status.err {
+background: #fdf2f1;
+border: 1px solid #e8b4b0;
+color: var(--error);
+}
 
-    /* ââ MENTION ââ */
-    .rgu-mention {
-      font-size: 11px;
-      color: var(--gray-mid);
-      text-align: center;
-      margin-top: 28px;
-      line-height: 1.7;
-      font-style: italic;
-    }
+/* -- MENTION -- */
+.rgu-mention {
+font-size: 11px;
+color: var(--gray-mid);
+text-align: center;
+margin-top: 28px;
+line-height: 1.7;
+font-style: italic;
+}
 
-    /* ââ CONFIRMATION ââ */
-    .rgu-confirm {
-      display: none;
-      text-align: center;
-      padding: 48px 24px;
-    }
-    .rgu-confirm .check {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: #edf8f2;
-      border: 2px solid #1A7A4A;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 24px;
-      font-size: 28px;
-    }
-    .rgu-confirm h2 {
-      font-family: var(--font-serif);
-      font-size: 30px;
-      font-weight: 400;
-      margin-bottom: 12px;
-      color: var(--black);
-    }
-    .rgu-confirm p {
-      font-size: 14px;
-      color: var(--gray-mid);
-      max-width: 420px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
+/* -- CONFIRMATION -- */
+.rgu-confirm {
+display: none;
+text-align: center;
+padding: 48px 24px;
+}
+.rgu-confirm .check {
+width: 64px;
+height: 64px;
+border-radius: 50%;
+background: #edf8f2;
+border: 2px solid #1A7A4A;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 24px;
+font-size: 28px;
+}
+.rgu-confirm h2 {
+font-family: var(--font-serif);
+font-size: 30px;
+font-weight: 400;
+margin-bottom: 12px;
+color: var(--black);
+}
+.rgu-confirm p {
+font-size: 14px;
+color: var(--gray-mid);
+max-width: 420px;
+margin: 0 auto;
+line-height: 1.7;
+}
 
-    /* ââ FOOTER ââ */
-    .rgu-footer {
-      background: var(--black);
-      padding: 24px 32px;
-      text-align: center;
-    }
-    .rgu-footer p {
-      font-size: 11px;
-      color: #666;
-    }
-    .rgu-footer a {
-      color: var(--bronze);
-      text-decoration: none;
-    }
+/* -- FOOTER -- */
+.rgu-footer {
+background: var(--black);
+padding: 24px 32px;
+text-align: center;
+}
+.rgu-footer p {
+font-size: 11px;
+color: #666;
+}
+.rgu-footer a {
+color: var(--bronze);
+text-decoration: none;
+}
 
-    @media (max-width: 480px) {
-      .rgu-card { padding: 24px 20px; }
-      .rgu-header { padding: 16px 20px; }
-    }
-  </style>
+@media (max-width: 480px) {
+.rgu-card { padding: 24px 20px; }
+.rgu-header { padding: 16px 20px; }
+}
+</style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="rgu-header">
-    <a href="https://rg-capital.fr" class="rgu-header-logo">RG <span>Capital</span></a>
-    <span class="rgu-header-tag">Espace fournisseur</span>
-  </header>
+<!-- HEADER -->
+<header class="rgu-header">
+<a href="https://rg-capital.fr" class="rgu-header-logo">RG <span>Capital</span></a>
+<span class="rgu-header-tag">Espace fournisseur</span>
+</header>
 
-  <main class="rgu-main">
+<main class="rgu-main">
 
-    <!-- INTRO -->
-    <div class="rgu-intro">
-      <div class="rgu-eyebrow">DÃ©pÃ´t de dossier</div>
-      <h1>Transmettez les <em>piÃ¨ces justificatives</em></h1>
-      <p>Suite Ã  votre simulation, dÃ©posez ici les documents nÃ©cessaires Ã  l'Ã©tude de financement. RG Capital les analysera sous 24â48h ouvrÃ©es.</p>
-    </div>
+<!-- INTRO -->
+<div class="rgu-intro">
+<div class="rgu-eyebrow">Dépôt de dossier</div>
+<h1>Transmettez les <em>pièces justificatives</em></h1>
+<p>Suite à votre simulation, déposez ici les documents nécessaires à l'étude de financement. RG Capital les analysera sous 24–48h ouvrées.</p>
+</div>
 
-    <!-- FORMULAIRE -->
-    <form id="rgu-form" novalidate>
+<!-- FORMULAIRE -->
+<form id="rgu-form" novalidate>
 
-      <!-- BANNER CLIENT (prÃ©remplie via URL params) -->
-      <div class="rgu-client-banner" id="rgu-banner" style="display:none">
-        <div class="label">Dossier client</div>
-        <div class="val" id="rgu-banner-nom">â</div>
-        <div class="siren" id="rgu-banner-siren">SIREN â</div>
-      </div>
+<!-- BANNER CLIENT (preremplie via URL params) -->
+<div class="rgu-client-banner" id="rgu-banner" style="display:none">
+<div class="label">Dossier client</div>
+<div class="val" id="rgu-banner-nom">–</div>
+<div class="siren" id="rgu-banner-siren">SIREN –</div>
+</div>
 
-      <!-- IDENTITÃ -->
-      <div class="rgu-card">
-        <div class="rgu-section-label">Informations dossier</div>
+<!-- IDENTITE -->
+<div class="rgu-card">
+<div class="rgu-section-label">Informations dossier</div>
 
-        <div class="rgu-field" id="rguf-cnom">
-          <label for="rgu-cnom">Nom du client *</label>
-          <input type="text" id="rgu-cnom" name="client_nom" placeholder="PrÃ©nom NOM" autocomplete="off">
-        </div>
+<div class="rgu-field" id="rguf-cnom">
+<label for="rgu-cnom">Nom du client *</label>
+<input type="text" id="rgu-cnom" name="client_nom" placeholder="Prénom NOM" autocomplete="off">
+</div>
 
-        <div class="rgu-field" id="rguf-csociete">
-          <label for="rgu-csociete">SociÃ©tÃ© *</label>
-          <input type="text" id="rgu-csociete" name="client_societe" placeholder="Raison sociale">
-        </div>
+<div class="rgu-field" id="rguf-csociete">
+<label for="rgu-csociete">Société *</label>
+<input type="text" id="rgu-csociete" name="client_societe" placeholder="Raison sociale">
+</div>
 
-        <div class="rgu-field" id="rguf-csiren">
-          <label for="rgu-csiren">SIREN *</label>
-          <input type="text" id="rgu-csiren" name="client_siren" placeholder="123 456 789" maxlength="11">
-        </div>
+<div class="rgu-field" id="rguf-csiren">
+<label for="rgu-csiren">SIREN *</label>
+<input type="text" id="rgu-csiren" name="client_siren" placeholder="123 456 789" maxlength="11">
+</div>
 
-        <div class="rgu-field" id="rguf-role">
-          <label for="rgu-role">Vous Ãªtes *</label>
-          <select id="rgu-role" name="role">
-            <option value="">â SÃ©lectionnez â</option>
-            <option value="client">Le client (demandeur de financement)</option>
-            <option value="fournisseur">Le fournisseur partenaire</option>
-          </select>
-        </div>
+<div class="rgu-field" id="rguf-role">
+<label for="rgu-role">Vous êtes *</label>
+<select id="rgu-role" name="role">
+<option value="">– Sélectionnez –</option>
+<option value="client">Le client (demandeur de financement)</option>
+<option value="fournisseur">Le fournisseur partenaire</option>
+</select>
+</div>
 
-        <div class="rgu-field" id="rguf-email">
-          <label for="rgu-email">Votre e-mail *</label>
-          <input type="email" id="rgu-email" name="email" placeholder="vous@exemple.fr">
-        </div>
-      </div>
+<div class="rgu-field" id="rguf-email">
+<label for="rgu-email">Votre e-mail *</label>
+<input type="email" id="rgu-email" name="email" placeholder="vous@exemple.fr">
+</div>
+</div>
 
-      <!-- PIÃCES -->
-      <div class="rgu-card">
-        <div class="rgu-section-label">Documents Ã  transmettre</div>
+<!-- PIECES -->
+<div class="rgu-card">
+<div class="rgu-section-label">Documents à transmettre</div>
 
-        <!-- Bilan N-2 -->
-        <div class="rgu-field">
-          <label>Bilan / Liasse fiscale N-2 <span class="opt">(fortement recommandÃ©)</span></label>
-          <div class="rgu-upload-zone" id="zone-n2">
-            <input type="file" id="file-n2" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls" multiple>
-            <div class="icon">ð</div>
-            <div class="txt-main">Glissez-dÃ©posez ou cliquez pour sÃ©lectionner</div>
-            <div class="txt-sub">PDF, image ou Excel â <strong>max 10 Mo par fichier</strong></div>
-          </div>
-          <div class="rgu-file-list" id="list-n2"></div>
-        </div>
+<!-- Bilan N-2 -->
+<div class="rgu-field">
+<label>Bilan / Liasse fiscale N-2 <span class="opt">(fortement recommandé)</span></label>
+<div class="rgu-upload-zone" id="zone-n2">
+<input type="file" id="file-n2" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls" multiple>
+<div class="icon">&#128196;</div>
+<div class="txt-main">Glissez-déposez ou cliquez pour sélectionner</div>
+<div class="txt-sub">PDF, image ou Excel – <strong>max 10 Mo par fichier</strong></div>
+</div>
+<div class="rgu-file-list" id="list-n2"></div>
+</div>
 
-        <!-- Bilan N-1 -->
-        <div class="rgu-field">
-          <label>Bilan / Liasse fiscale N-1 *</label>
-          <div class="rgu-upload-zone" id="zone-n1">
-            <input type="file" id="file-n1" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls" multiple>
-            <div class="icon">ð</div>
-            <div class="txt-main">Glissez-dÃ©posez ou cliquez pour sÃ©lectionner</div>
-            <div class="txt-sub">PDF, image ou Excel â <strong>max 10 Mo par fichier</strong></div>
-          </div>
-          <div class="rgu-file-list" id="list-n1"></div>
-        </div>
+<!-- Bilan N-1 -->
+<div class="rgu-field">
+<label>Bilan / Liasse fiscale N-1 *</label>
+<div class="rgu-upload-zone" id="zone-n1">
+<input type="file" id="file-n1" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls" multiple>
+<div class="icon">&#128196;</div>
+<div class="txt-main">Glissez-déposez ou cliquez pour sélectionner</div>
+<div class="txt-sub">PDF, image ou Excel – <strong>max 10 Mo par fichier</strong></div>
+</div>
+<div class="rgu-file-list" id="list-n1"></div>
+</div>
 
-        <!-- Devis -->
-        <div class="rgu-field">
-          <label>Devis / Facture pro forma *</label>
-          <div class="rgu-upload-zone" id="zone-devis">
-            <input type="file" id="file-devis" accept=".pdf,.jpg,.jpeg,.png" multiple>
-            <div class="icon">ð</div>
-            <div class="txt-main">Glissez-dÃ©posez ou cliquez pour sÃ©lectionner</div>
-            <div class="txt-sub">PDF ou image â <strong>max 10 Mo par fichier</strong></div>
-          </div>
-          <div class="rgu-file-list" id="list-devis"></div>
-        </div>
+<!-- Devis -->
+<div class="rgu-field">
+<label>Devis / Facture pro forma *</label>
+<div class="rgu-upload-zone" id="zone-devis">
+<input type="file" id="file-devis" accept=".pdf,.jpg,.jpeg,.png" multiple>
+<div class="icon">&#128196;</div>
+<div class="txt-main">Glissez-déposez ou cliquez pour sélectionner</div>
+<div class="txt-sub">PDF ou image – <strong>max 10 Mo par fichier</strong></div>
+</div>
+<div class="rgu-file-list" id="list-devis"></div>
+</div>
 
-        <!-- Autres -->
-        <div class="rgu-field">
-          <label>Autres documents <span class="opt">(K-is, RIB, piÃ¨ce d'identitÃ©Â¦)</span></label>
-          <div class="rgu-upload-zone" id="zone-autres">
-            <input type="file" id="file-autres" accept=".pdf,.jpg,.jpeg,.png" multiple>
-            <div class="icon">ð</div>
-            <div class="txt-main">Glissez-dÃ©posez ou cliquez pour sÃ©lectionner</div>
-            <div class="txt-sub">PDF ou image â <strong>max 10 Mo par fichier</strong></div>
-          </div>
-          <div class="rgu-file-list" id="list-autres"></div>
-        </div>
+<!-- Autres -->
+<div class="rgu-field">
+<label>Autres documents <span class="opt">(K-is, RIB, pièce d'identité…)</span></label>
+<div class="rgu-upload-zone" id="zone-autres">
+<input type="file" id="file-autres" accept=".pdf,.jpg,.jpeg,.png" multiple>
+<div class="icon">&#128196;</div>
+<div class="txt-main">Glissez-déposez ou cliquez pour sélectionner</div>
+<div class="txt-sub">PDF ou image – <strong>max 10 Mo par fichier</strong></div>
+</div>
+<div class="rgu-file-list" id="list-autres"></div>
+</div>
 
-        <!-- Commentaire -->
-        <div class="rgu-field" style="margin-bottom:0">
-          <label for="rgu-message">Message <span class="opt">(facultatif)</span></label>
-          <textarea id="rgu-message" name="message" rows="4" style="width:100%;border:1px solid var(--border);border-radius:2%;padding:12px 14px;font-size:14px;font-family:var(--font-sans);color:var(--black);background:var(--white);outline:none;resize:vertical;line-height:1.6;transition:border-color 0.15s" placeholder="PrÃ©cisions sur le dossier, contexte, questionsâ¦" onfocus="this.style.borderColor='var(--bronze)'" onblur="this.style.borderColor='var(--border)'"></textarea>
-        </div>
-      </div>
+<!-- Commentaire -->
+<div class="rgu-field" style="margin-bottom:0">
+<label for="rgu-message">Message <span class="opt">(facultatif)</span></label>
+<textarea id="rgu-message" name="message" rows="4" style="width:100%;border:1px solid var(--border);border-radius:2%;padding:12px 14px;font-size:14px;font-family:var(--font-sans);color:var(--black);background:var(--white);outline:none;resize:vertical;line-height:1.6;transition:border-color 0.15s" placeholder="Précisions sur le dossier, contexte, questions…" onfocus="this.style.borderColor='var(--bronze)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+</div>
+</div>
 
-      <!-- CONSENTEMENT -->
-      <div class="rgu-card" style="padding:24px 36px">
-        <div class="rgu-consent" id="rguf-consent">
-          <input type="checkbox" id="rgu-consent" name="consent">
-          <label for="rgu-consent">
-            J'autorise RG Capital Ã  traiter les documents transmis dans le cadre de l'Ã©tude de financement mentionnÃ©e. Ces donnÃ©es seront utilisÃ©es exclusivement Ã  des fins d'analyse et ne seront pas partagÃ©es sans accord prÃ©alable.
-          </label>
-        </div>
-      </div>
+<!-- CONSENTEMENT -->
+<div class="rgu-card" style="padding:24px 36px">
+<div class="rgu-consent" id="rguf-consent">
+<input type="checkbox" id="rgu-consent" name="consent">
+<label for="rgu-consent">
+J'autorise RG Capital à traiter les documents transmis dans le cadre de l'étude de financement mentionnée. Ces données seront utilisées exclusivement à des fins d'analyse et ne seront pas partagées sans accord préalable.
+</label>
+</div>
+</div>
 
-      <!-- BOUTON -->
-      <button type="button" class="rgu-btn" id="rgu-btn">Transmettre les documents Ã  RG Capital</button>
-      <div class="rgu-status" id="rgu-status"></div>
+<!-- BOUTON -->
+<button type="button" class="rgu-btn" id="rgu-btn">Transmettre les documents à RG Capital</button>
+<div class="rgu-status" id="rgu-status"></div>
 
-      <div class="rgu-mention">
-        Simulation indicative, non contractuelle, sous rÃ©serve d'analyse complÃ¨te du dossier,<br>
-        validation financeur et rÃ©ception des piÃ¨ces justificatives.
-      </div>
+<div class="rgu-mention">
+Simulation indicative, non contractuelle, sous réserve d'analyse complète du dossier,<br>
+validation financeur et réception des pièces justificatives.
+</div>
 
-    </form>
+</form>
 
-    <!-- CONFIRMATION -->
-    <div class="rgu-confirm" id="rgu-confirm">
-      <div class="check">â</div>
-      <h2>Documents transmis</h2>
-      <p>RG Capital a bien reÃ§u vos piÃ¨ces et reviendra vers vous sous <strong>24 Ã  48h ouvrÃ©es</strong> pour vous communiquer un avis indicatif de faisabilitÃ©.</p>
-    </div>
+<!-- CONFIRMATION -->
+<div class="rgu-confirm" id="rgu-confirm">
+<div class="check">&#10003;</div>
+<h2>Documents transmis</h2>
+<p>RG Capital a bien reçu vos pièces et reviendra vers vous sous <strong>24 à 48h ouvrées</strong> pour vous communiquer un avis indicatif de faisabilité.</p>
+</div>
 
-  </main>
+</main>
 
-  <!-- FOOTER -->
-  <footer class="rgu-footer">
-    <p>
-      <strong style="color:#999">RG Capital</strong> â
-      Financement alternatif pour professionnels â¢
-      <a href="https://rg-capital.fr">rg-capital.fr</a> â¢
-      <a href="mailto:contact@rg-capital.fr">contact@rg-capital.fr</a>
-    </p>
-  </footer>
+<!-- FOOTER -->
+<footer class="rgu-footer">
+<p>
+<strong style="color:#999">RG Capital</strong> –
+Financement alternatif pour professionnels &bull;
+<a href="https://rg-capital.fr">rg-capital.fr</a> &bull;
+<a href="mailto:contact@rg-capital.fr">contact@rg-capital.fr</a>
+</p>
+</footer>
 
 <script>
 (function() {
 'use strict';
 
-// ââââââââââââââââââââââââââââââââââââââââââââââ
-// CONFIG â remplacer par votre webhook Make upload
-// ââââââââââââââââââââââââââââââââââââââââââââââ
 var UPLOAD_WEBHOOK_URL = 'https://hook.eu1.make.com/pn2tyx3ucdbq6rigb1ygh5ox1rjlcpgj';
 
-// ââââââââââââââââââââââââââââââââââââââââââââââ
-// PRÃ-REMPLISSAGE VIA URL PARAMS
-// ââââââââââââââââââââââââââââââââââââââââââââââ
 (function prefillFromURL() {
-  var params = new URLSearchParams(window.location.search);
-  var client  = params.get('client')  || '';
-  var societe = params.get('societe') || '';
-  var siren   = params.get('siren')   || '';
+var params = new URLSearchParams(window.location.search);
+var client = params.get('client') || '';
+var societe = params.get('societe') || '';
+var siren = params.get('siren') || '';
 
-  if (client)  document.getElementById('rgu-cnom').value    = client;
-  if (societe) document.getElementById('rgu-csociete').value = societe;
-  if (siren)   document.getElementById('rgu-csiren').value   = siren;
+if (client) document.getElementById('rgu-cnom').value = client;
+if (societe) document.getElementById('rgu-csociete').value = societe;
+if (siren) document.getElementById('rgu-csiren').value = siren;
 
-  if (client || societe || siren) {
-    var banner = document.getElementById('rgu-banner');
-    banner.style.display = 'flex';
-    document.getElementById('rgu-banner-nom').textContent   = [client, societe].filter(Boolean).join(' â ');
-    document.getElementById('rgu-banner-siren').textContent = siren ? 'SIREN ' + siren : '';
-  }
+if (client || societe || siren) {
+var banner = document.getElementById('rgu-banner');
+banner.style.display = 'flex';
+document.getElementById('rgu-banner-nom').textContent = [client, societe].filter(Boolean).join(' \u2013 ');
+document.getElementById('rgu-banner-siren').textContent = siren ? 'SIREN ' + siren : '';
+}
 })();
 
-// ââââââââââââââââââââââââââââââââââââââââââââââ
-// GESTION DES FICHIERS
-// ââââââââââââââââââââââââââââââââââââââââââââââ
 var fileStores = { n2: [], n1: [], devis: [], autres: [] };
 var MAX_FILE_MB = 10;
 
 function formatSize(bytes) {
-  if (bytes < 1024) return bytes + ' o';
-  if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' Ko';
-  return (bytes / 1048576).toFixed(1) + ' Mo';
+if (bytes < 1024) return bytes + ' o';
+if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' Ko';
+return (bytes / 1048576).toFixed(1) + ' Mo';
 }
 
 function renderList(key) {
-  var list = document.getElementById('list-' + key);
-  list.innerHTML = '';
-  fileStores[key].forEach(function(f, i) {
-    var item = document.createElement('div');
-    item.className = 'rgu-file-item';
-    item.innerHTML =
-      '<span class="fname">ð ' + f.name + '</span>' +
-      '<span class="fsize">' + formatSize(f.size) + '</span>' +
-      '<button type="button" class="fremove" data-key="' + key + '" data-idx="' + i + '" title="Retirer">â</button>';
-    list.appendChild(item);
-  });
+var list = document.getElementById('list-' + key);
+list.innerHTML = '';
+fileStores[key].forEach(function(f, i) {
+var item = document.createElement('div');
+item.className = 'rgu-file-item';
+item.innerHTML =
+'<span class="fname">&#128196; ' + f.name + '</span>' +
+'<span class="fsize">' + formatSize(f.size) + '</span>' +
+'<button type="button" class="fremove" data-key="' + key + '" data-idx="' + i + '" title="Retirer">&times;</button>';
+list.appendChild(item);
+});
 
-  list.querySelectorAll('.fremove').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var k = this.dataset.key;
-      var idx = parseInt(this.dataset.idx, 10);
-      fileStores[k].splice(idx, 1);
-      renderList(k);
-    });
-  });
+list.querySelectorAll('.fremove').forEach(function(btn) {
+btn.addEventListener('click', function() {
+var k = this.dataset.key;
+var idx = parseInt(this.dataset.idx, 10);
+fileStores[k].splice(idx, 1);
+renderList(k);
+});
+});
 }
 
 function setupZone(key) {
-  var input = document.getElementById('file-' + key);
-  var zone  = document.getElementById('zone-' + key);
+var input = document.getElementById('file-' + key);
+var zone = document.getElementById('zone-' + key);
 
-  input.addEventListener('change', function() {
-    Array.from(this.files).forEach(function(f) {
-      if (f.size > MAX_FILE_MB * 1024 * 1024) {
-        alert(f.name + ' dÃ©passe ' + MAX_FILE_MB + ' Mo et ne peut pas Ãªtre ajoutÃ©.');
-        return;
-      }
-      fileStores[key].push(f);
-    });
-    this.value = '';
-    renderList(key);
-  });
+input.addEventListener('change', function() {
+Array.from(this.files).forEach(function(f) {
+if (f.size > MAX_FILE_MB * 1024 * 1024) {
+alert(f.name + ' d\u00e9passe ' + MAX_FILE_MB + ' Mo et ne peut pas \u00eatre ajout\u00e9.');
+return;
+}
+fileStores[key].push(f);
+});
+this.value = '';
+renderList(key);
+});
 
-  zone.addEventListener('dragover', function(e) { e.preventDefault(); this.classList.add('drag-over'); });
-  zone.addEventListener('dragleave', function() { this.classList.remove('drag-over'); });
-  zone.addEventListener('drop', function(e) {
-    e.preventDefault();
-    this.classList.remove('drag-over');
-    Array.from(e.dataTransfer.files).forEach(function(f) {
-      if (f.size > MAX_FILE_MB * 1024 * 1024) {
-        alert(f.name + ' dÃ©passe ' + MAX_FILE_MB + ' Mo.'); return;
-      }
-      fileStores[key].push(f);
-    });
-    renderList(key);
-  });
+zone.addEventListener('dragover', function(e) { e.preventDefault(); this.classList.add('drag-over'); });
+zone.addEventListener('dragleave', function() { this.classList.remove('drag-over'); });
+zone.addEventListener('drop', function(e) {
+e.preventDefault();
+this.classList.remove('drag-over');
+Array.from(e.dataTransfer.files).forEach(function(f) {
+if (f.size > MAX_FILE_MB * 1024 * 1024) {
+alert(f.name + ' d\u00e9passe ' + MAX_FILE_MB + ' Mo.'); return;
+}
+fileStores[key].push(f);
+});
+renderList(key);
+});
 }
 
 ['n2', 'n1', 'devis', 'autres'].forEach(setupZone);
 
-// ââââââââââââââââââââââââââââââââââââââââââââââ
-// VALIDATION
-// ââââââââââââââââââââââââââââââââââââââââââââââ
 function gv(id) { return document.getElementById(id).value.trim(); }
 
 function setErr(id, hasErr) {
-  var el = document.getElementById(id);
-  if (hasErr) el.classList.add('rgu-err'); else el.classList.remove('rgu-err');
-  return hasErr;
+var el = document.getElementById(id);
+if (hasErr) el.classList.add('rgu-err'); else el.classList.remove('rgu-err');
+return hasErr;
 }
 
 function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
 
 function valider() {
-  var ok = true;
-  if (setErr('rguf-cnom',    !gv('rgu-cnom')))         ok = false;
-  if (setErr('rguf-csociete',!gv('rgu-csociete')))     ok = false;
-  if (setErr('rguf-csiren',  !gv('rgu-csiren')))       ok = false;
-  if (setErr('rguf-role',    !gv('rgu-role')))         ok = false;
-  if (setErr('rguf-email',   !isEmail(gv('rgu-email'))))  ok = false;
+var ok = true;
+if (setErr('rguf-cnom', !gv('rgu-cnom'))) ok = false;
+if (setErr('rguf-csociete',!gv('rgu-csociete'))) ok = false;
+if (setErr('rguf-csiren', !gv('rgu-csiren'))) ok = false;
+if (setErr('rguf-role', !gv('rgu-role'))) ok = false;
+if (setErr('rguf-email', !isEmail(gv('rgu-email')))) ok = false;
 
-  // Au moins bilan N-1 + devis
-  if (fileStores.n1.length === 0) {
-    alert('Merci de joindre au moins le bilan / liasse fiscale N-1.');
-    ok = false;
-  }
-  if (fileStores.devis.length === 0) {
-    alert('Merci de joindre au moins un devis ou facture pro forma.');
-    ok = false;
-  }
-  if (!document.getElementById('rgu-consent').checked) {
-    document.getElementById('rguf-consent').style.outline = '2px solid var(--error)';
-    ok = false;
-  } else {
-    document.getElementById('rguf-consent').style.outline = '';
-  }
-  return ok;
+if (fileStores.n1.length === 0) {
+alert('Merci de joindre au moins le bilan / liasse fiscale N-1.');
+ok = false;
+}
+if (fileStores.devis.length === 0) {
+alert('Merci de joindre au moins un devis ou facture pro forma.');
+ok = false;
+}
+if (!document.getElementById('rgu-consent').checked) {
+document.getElementById('rguf-consent').style.outline = '2px solid var(--error)';
+ok = false;
+} else {
+document.getElementById('rguf-consent').style.outline = '';
+}
+return ok;
 }
 
-// ââââââââââââââââââââââââââââââââââââââââââââââ
-// CONVERSION FILE â BASE64
-// ââââââââââââââââââââââââââââââââââââââââââââââ
 function fileToBase64(file) {
-  return new Promise(function(resolve, reject) {
-    var reader = new FileReader();
-    reader.onload  = function(e) { resolve(e.target.result.split(',')[1]); };
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
+return new Promise(function(resolve, reject) {
+var reader = new FileReader();
+reader.onload = function(e) { resolve(e.target.result.split(',')[1]); };
+reader.onerror = reject;
+reader.readAsDataURL(file);
+});
 }
 
-// ââââââââââââââââââââââââââââââââââââââââââââââ
-// ENVOI
-// ââââââââââââââââââââââââââââââââââââââââââââââ
 document.getElementById('rgu-btn').addEventListener('click', async function() {
-  if (!valider()) return;
+if (!valider()) return;
 
-  var btn    = this;
-  var status = document.getElementById('rgu-status');
-  btn.classList.add('loading'); btn.disabled = true;
-  status.style.display = 'none';
+var btn = this;
+var status = document.getElementById('rgu-status');
+btn.classList.add('loading'); btn.disabled = true;
+status.style.display = 'none';
 
-  try {
-    // Convertir tous les fichiers en base64
-    async function processFiles(key, label) {
-      var results = [];
-      for (var i = 0; i < fileStores[key].length; i++) {
-        var f = fileStores[key][i];
-        var b64 = await fileToBase64(f);
-        results.push({ label: label, filename: f.name, type: f.type, size: f.size, base64: b64 });
-      }
-      return results;
-    }
+try {
+async function processFiles(key, label) {
+var results = [];
+for (var i = 0; i < fileStores[key].length; i++) {
+var f = fileStores[key][i];
+var b64 = await fileToBase64(f);
+results.push({ label: label, filename: f.name, type: f.type, size: f.size, base64: b64 });
+}
+return results;
+}
 
-    var docs = [];
-    docs = docs.concat(await processFiles('n2',    'Bilan N-2'));
-    docs = docs.concat(await processFiles('n1',    'Bilan N-1'));
-    docs = docs.concat(await processFiles('devis', 'Devis/Pro forma'));
-    docs = docs.concat(await processFiles('autres','Autre document'));
+var docs = [];
+docs = docs.concat(await processFiles('n2', 'Bilan N-2'));
+docs = docs.concat(await processFiles('n1', 'Bilan N-1'));
+docs = docs.concat(await processFiles('devis', 'Devis/Pro forma'));
+docs = docs.concat(await processFiles('autres','Autre document'));
 
-    var payload = {
-      client_nom:     gv('rgu-cnom'),
-      client_societe: gv('rgu-csociete'),
-      client_siren:   gv('rgu-csiren').replace(/\s/g,''),
-      role:           gv('rgu-role'),
-      email:          gv('rgu-email'),
-      message:        gv('rgu-message'),
-      date_depot:     new Date().toLocaleDateString('fr-FR'),
-      nb_fichiers:    docs.length,
-      fichiers:       docs
-    };
+var payload = {
+client_nom: gv('rgu-cnom'),
+client_societe: gv('rgu-csociete'),
+client_siren: gv('rgu-csiren').replace(/\s/g,''),
+role: gv('rgu-role'),
+email: gv('rgu-email'),
+message: gv('rgu-message'),
+date_depot: new Date().toLocaleDateString('fr-FR'),
+nb_fichiers: docs.length,
+fichiers: docs
+};
 
-    var res = await fetch(UPLOAD_WEBHOOK_URL, {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify(payload)
-    });
+var res = await fetch(UPLOAD_WEBHOOK_URL, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify(payload)
+});
 
-    if (!res.ok) throw new Error('HTTP ' + res.status);
+if (!res.ok) throw new Error('HTTP ' + res.status);
 
-    // SuccÃ¨s
-    document.getElementById('rgu-form').style.display    = 'none';
-    document.getElementById('rgu-confirm').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+document.getElementById('rgu-form').style.display = 'none';
+document.getElementById('rgu-confirm').style.display = 'block';
+window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  } catch(e) {
-    status.textContent = 'Erreur lors de la transmission. Veuillez rÃ©essayer ou contacter directement contact@rg-capital.fr';
-    status.className = 'rgu-status err';
-    status.style.display = 'block';
-    btn.classList.remove('loading'); btn.disabled = false;
-  }
+} catch(e) {
+status.textContent = 'Erreur lors de la transmission. Veuillez r\u00e9essayer ou contacter directement contact@rg-capital.fr';
+status.className = 'rgu-status err';
+status.style.display = 'block';
+btn.classList.remove('loading'); btn.disabled = false;
+}
 });
 
 })();
