@@ -534,9 +534,9 @@ text-decoration: none;
 </div>
 
 <!-- Commentaire -->
-<div class="rgu-field" style="marginbottom:0">
+<div class="rgu-field" style="margin-bottom:0">
 <label for="rgu-message">Message <span class="opt">(facultatif)</span></label>
-<textarea id="rgu-message" name="message" rows="4" style="width:100%;border:1px solid var(--border);border-radius:2%;padding:12px 14px;font-size:14px;font-family:var(--font-sans);color:var(--black);background:var(--white);outline:none;resize:vertical;line-height:1.6;transition:border-color 0.15s" placeholder="Précisions sur le dossier, contexte, questions ↾" onfocus="this.style.borderColor='var(--bronze)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+<textarea id="rgu-message" name="message" rows="4" style="width:100%;border:1px solid var(--border);border-radius:2%;padding:12px 14px;font-size:14px;font-family:var(--font-sans);color:var(--black);background:var(--white);outline:none;resize:vertical;line-height:1.6;transition:border-color 0.15s" placeholder="Précisions sur le dossier, contexte, questions…" onfocus="this.style.borderColor='var(--bronze)'" onblur="this.style.borderColor='var(--border)'"></textarea>
 </div>
 </div>
 
@@ -545,7 +545,7 @@ text-decoration: none;
 <div class="rgu-consent" id="rguf-consent">
 <input type="checkbox" id="rgu-consent" name="consent">
 <label for="rgu-consent">
-J'tautorise RG Capital à traiter les documents transmis dans le cadre de l'étude de financement mentionnée. Ces données seront utilisées exclusivement à des fins d'analyse et ne seront pas partagées sans accord préalable.
+*'autorise RG Capital à traiter les documents transmis dans le cadre de l'étude de financement mentionnée. Ces données seront utilisées exclusivement à des fins d'analyse et ne seront pas partagées sans accord préalable.
 </label>
 </div>
 </div>
@@ -615,7 +615,7 @@ document.getElementById('rgu-banner-siren').textContent = siren ? 'SIREN ' + sir
 })();
 
 var fileStores = { n2: [], n1: [], devis: [], autres: [] };
-"var MAX_FILE_MB = 5;
+var MAX_FILE_MB = 5;
 
 function formatSize(bytes) {
 if (bytes < 1024) return bytes + ' o';
