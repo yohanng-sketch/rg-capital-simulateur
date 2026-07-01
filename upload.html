@@ -492,7 +492,7 @@ text-decoration: none;
 <input type="file" id="file-n2" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls" multiple>
 <div class="icon">&#128196;</div>
 <div class="txt-main">Glissez-déposez ou cliquez pour sélectionner</div>
-<div class="txt-sub">PDF, image ou Excel – <strong>max 10 Mo par fichier</strong></div>
+<div class="txt-sub">PDF, image ou Excel – <strong>max 5 Mo par fichier</strong></div>
 </div>
 <div class="rgu-file-list" id="list-n2"></div>
 </div>
@@ -504,7 +504,7 @@ text-decoration: none;
 <input type="file" id="file-n1" accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls" multiple>
 <div class="icon">&#128196;</div>
 <div class="txt-main">Glissez-déposez ou cliquez pour sélectionner</div>
-<div class="txt-sub">PDF, image ou Excel – <strong>max 10 Mo par fichier</strong></div>
+<div class="txt-sub">PDF, image ou Excel – <strong>max 5 Mo par fichier</strong></div>
 </div>
 <div class="rgu-file-list" id="list-n1"></div>
 </div>
@@ -516,7 +516,7 @@ text-decoration: none;
 <input type="file" id="file-devis" accept=".pdf,.jpg,.jpeg,.png" multiple>
 <div class="icon">&#128196;</div>
 <div class="txt-main">Glissez-déposez ou cliquez pour sélectionner</div>
-<div class="txt-sub">PDF ou image – <strong>max 10 Mo par fichier</strong></div>
+<div class="txt-sub">PDF ou image – <strong>max 5 Mo par fichier</strong></div>
 </div>
 <div class="rgu-file-list" id="list-devis"></div>
 </div>
@@ -528,7 +528,7 @@ text-decoration: none;
 <input type="file" id="file-autres" accept=".pdf,.jpg,.jpeg,.png" multiple>
 <div class="icon">&#128196;</div>
 <div class="txt-main">Glissez-déposez ou cliquez pour sélectionner</div>
-<div class="txt-sub">PDF ou image – <strong>max 10 Mo par fichier</strong></div>
+<div class="txt-sub">PDF ou image – <strong>max 5 Mo par fichier</strong></div>
 </div>
 <div class="rgu-file-list" id="list-autres"></div>
 </div>
@@ -536,7 +536,7 @@ text-decoration: none;
 <!-- Commentaire -->
 <div class="rgu-field" style="margin-bottom:0">
 <label for="rgu-message">Message <span class="opt">(facultatif)</span></label>
-<textarea id="rgu-message" name="message" rows="4" style="width:100%;border:1px solid var(--border);border-radius:2%;padding:12px 14px;font-size:14px;font-family:var(--font-sans);color:var(--black);background:var(--white);outline:none;resize:vertical;line-height:1.6;transition:border-color 0.15s" placeholder="Précisions sur le dossier, contexte, questions…" onfocus="this.style.borderColor='var(--bronze)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+<textarea id="rgu-message" name="message" rows="4" style="width:100%;border:1px solid var(--border);border-radius:2%;padding:12px 14px;font-size:14px;font-family:var(--font-sans);color:var(--black);background:var(--white);outline:none;resize:vertical;line-height:1.6;transition:border-color 0.15s" placeholder="Précisions sur le dossier, contexte, questions ↾" onfocus="this.style.borderColor='var(--bronze)'" onblur="this.style.borderColor='var(--border)'"></textarea>
 </div>
 </div>
 
@@ -545,7 +545,7 @@ text-decoration: none;
 <div class="rgu-consent" id="rguf-consent">
 <input type="checkbox" id="rgu-consent" name="consent">
 <label for="rgu-consent">
-J'autorise RG Capital à traiter les documents transmis dans le cadre de l'étude de financement mentionnée. Ces données seront utilisées exclusivement à des fins d'analyse et ne seront pas partagées sans accord préalable.
+J'tautorise RG Capital à traiter les documents transmis dans le cadre de l'étude de financement mentionnée. Ces données seront utilisées exclusivement à des fins d'analyse et ne seront pas partagées sans accord préalable.
 </label>
 </div>
 </div>
@@ -566,6 +566,16 @@ validation financeur et réception des pièces justificatives.
 <div class="check">&#10003;</div>
 <h2>Documents transmis</h2>
 <p>RG Capital a bien reçu vos pièces et reviendra vers vous sous <strong>24 à 48h ouvrées</strong> pour vous communiquer un avis indicatif de faisabilité.</p>
+</div>
+
+<div class="rgu-confirm" id="rgu-confirm-lourd" style="display:none">
+<div class="check" style="background:#fef9ec;border-color:#B8914A;font-size:26px">&#9888;</div>
+<h2>Dossier enregistré</h2>
+<p>Vos informations ont bien été transmises à RG Capital.<br>
+<strong>Vos fichiers sont trop volumineux</strong> pour un envoi automatique.<br>
+Merci de les transmettre directement par e-mail à<br>
+<a href="mailto:contact@rg-capital.fr" style="color:var(--bronze)">contact@rg-capital.fr</a></p>
+<p id="rgu-confirm-lourd-msg" style="margin-top:12px;font-size:13px;color:var(--gray-mid)"></p>
 </div>
 
 </main>
@@ -605,7 +615,7 @@ document.getElementById('rgu-banner-siren').textContent = siren ? 'SIREN ' + sir
 })();
 
 var fileStores = { n2: [], n1: [], devis: [], autres: [] };
-var MAX_FILE_MB = 10;
+"var MAX_FILE_MB = 5;
 
 function formatSize(bytes) {
 if (bytes < 1024) return bytes + ' o';
@@ -722,21 +732,39 @@ btn.classList.add('loading'); btn.disabled = true;
 status.style.display = 'none';
 
 try {
-async function processFiles(key, label) {
-var results = [];
-for (var i = 0; i < fileStores[key].length; i++) {
-var f = fileStores[key][i];
-var b64 = await fileToBase64(f);
-results.push({ label: label, filename: f.name, type: f.type, size: f.size, base64: b64 });
-}
-return results;
-}
+// Vérification poids total (limite Make ~5 Mo de payload JSON)
+var totalSizeBytes = 0;
+['n2', 'n1', 'devis', 'autres'].forEach(function(k) {
+  fileStores[k].forEach(function(f) { totalSizeBytes += f.size; });
+});
+var tropLourd = totalSizeBytes > 3 * 1024 * 1024; // > 3 Mo → base64 dépasserait ~4 Mo
 
 var docs = [];
-docs = docs.concat(await processFiles('n2', 'Bilan N-2'));
-docs = docs.concat(await processFiles('n1', 'Bilan N-1'));
-docs = docs.concat(await processFiles('devis', 'Devis/Pro forma'));
-docs = docs.concat(await processFiles('autres','Autre document'));
+var labelMap = { n2: 'Bilan N-2', n1: 'Bilan N-1', devis: 'Devis/Pro forma', autres: 'Autre document' };
+
+if (!tropLourd) {
+  // Envoi complet avec fichiers en base64
+  async function processFiles(key, label) {
+    var results = [];
+    for (var i = 0; i < fileStores[key].length; i++) {
+      var f = fileStores[key][i];
+      var b64 = await fileToBase64(f);
+      results.push({ label: label, filename: f.name, type: f.type, size: f.size, base64: b64 });
+    }
+    return results;
+  }
+  docs = docs.concat(await processFiles('n2', 'Bilan N-2'));
+  docs = docs.concat(await processFiles('n1', 'Bilan N-1'));
+  docs = docs.concat(await processFiles('devis', 'Devis/Pro forma'));
+  docs = docs.concat(await processFiles('autres', 'Autre document'));
+} else {
+  // Fichiers trop lourds : envoi des métadonnées uniquement
+  ['n2', 'n1', 'devis', 'autres'].forEach(function(k) {
+    fileStores[k].forEach(function(f) {
+      docs.push({ label: labelMap[k], filename: f.name, type: f.type, size: f.size, base64: null, note: 'fichier a transmettre par email' });
+    });
+  });
+}
 
 var payload = {
 client_nom: gv('rgu-cnom'),
@@ -747,6 +775,7 @@ email: gv('rgu-email'),
 message: gv('rgu-message'),
 date_depot: new Date().toLocaleDateString('fr-FR'),
 nb_fichiers: docs.length,
+fichiers_trop_volumineux: tropLourd,
 fichiers: docs
 };
 
@@ -759,12 +788,19 @@ body: JSON.stringify(payload)
 if (!res.ok) throw new Error('HTTP ' + res.status);
 
 document.getElementById('rgu-form').style.display = 'none';
-document.getElementById('rgu-confirm').style.display = 'block';
+if (tropLourd) {
+  var siren = gv('rgu-csiren').replace(/\s/g,'');
+  var msg = document.getElementById('rgu-confirm-lourd-msg');
+  if (siren) msg.innerHTML = 'Mentionnez le SIREN <strong>' + siren + '</strong> dans l\u2019objet de votre e-mail.';
+  document.getElementById('rgu-confirm-lourd').style.display = 'block';
+} else {
+  document.getElementById('rgu-confirm').style.display = 'block';
+}
 window.scrollTo({ top: 0, behavior: 'smooth' });
 
 } catch(e) {
 var errDetail = e && (e.message || e.name) ? ' [' + (e.message || e.name) + ']' : '';
-status.textContent = 'Erreur lors de la transmission' + errDetail + '. Veuillez r\u00e8essayer ou contacter directement contact@rg-capital.fr';
+status.textContent = 'Erreur lors de la transmission' + errDetail + '. Veuillez r\u00e9essayer ou contacter directement contact@rg-capital.fr';
 status.className = 'rgu-status err';
 status.style.display = 'block';
 btn.classList.remove('loading'); btn.disabled = false;
